@@ -1,0 +1,11 @@
+.blessing-card {
+    flex-grow: 1;
+    border: 2px solid black;
+    margin-bottom: 1vh;
+    display: flex;
+    flex-direction: column;
+}
+.blessing-date{
+    align-self: flex-end;
+    margin-right: 1vw;
+}
