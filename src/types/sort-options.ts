@@ -1,4 +1,4 @@
 export enum SortOptions {
-  Amount = "Amount",
   Date = "Date",
+  Amount = "Amount",
 }

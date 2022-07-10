@@ -1,15 +1,15 @@
 import React from "react";
 import { Blessing } from "../types/blessing";
-import "./blessing-item.css";
+import styles from "./blessing-item.module.css";
 
-function BlessingItem({ by, text, createdAt, paymentAmount }: Blessing) {
-  const date = createdAt.toLocaleDateString();
+function BlessingItem({ createdBy, text, createdAt, paymentAmount }: Blessing) {
+  const date = new Date(createdAt).toLocaleDateString();
   return (
-    <div className="blessing-card">
-      <h4 className="blessing-header">{"By " + by}</h4>
-      <p className="blessing-text">{text}</p>
-      <h5 className="blessing-payment-amount">{paymentAmount}</h5>
-      <div className="blessing-date">{date}</div>
+    <div className={styles['blessing-card']}>
+      <h4 className={styles['blessing-header']}>{"By " + createdBy}</h4>
+      <p className={styles["blessing-text"]}>{text}</p>
+      <h5 className={styles["blessing-payment-amount"]}>{paymentAmount}</h5>
+      <div className={styles["blessing-date"]}>{date}</div>
     </div>
   );
 }

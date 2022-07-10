@@ -1,9 +1,10 @@
+
 export interface Blessing {
   id: number;
   text: string;
-  by: string;
+  createdBy: string;
   createdAt: Date;
   eventId: number;
-  paymentId: number;
   paymentAmount: number;
 }
+

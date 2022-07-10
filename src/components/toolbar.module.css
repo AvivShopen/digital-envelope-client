@@ -1,0 +1,9 @@
+.toolbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 4vh;
+}
+input{
+    margin-right: 1vw;
+}
