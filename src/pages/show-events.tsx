@@ -1,5 +1,18 @@
-import React from "react";
+import React from 'react'
+import api from '../api'
 
-export default function ShowEvents() {
-  return <div>show-events</div>;
+type Props = {}
+
+const ShowEvents = (props: Props) => {
+  
+  
+  const fetchEvents =async()=>{
+    const {data} = await  api.events().getEventsByUser(1);
+  }
+
+  return (
+    <div>My events</div>
+  )
 }
+
+export default ShowEvents
