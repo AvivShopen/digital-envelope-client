@@ -1,26 +1,26 @@
-import React, {useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import api from "../api";
-import BlessingItem from "../components/blessing-item";
-import Toolbar from "../components/toolbar";
-import { Blessing } from "../types/blessing";
-import { SortOptions } from "../types/sort-options";
-import styles from './show-blessings.module.css'
+import React, { useEffect, useState } from "react";
+import api from "../../api";
+import BlessingItem from "../../components/blessing-item";
+import Toolbar from "../../components/toolbar/Toolbar";
+import useStore from "../../states/store";
+import { Blessing } from "../../types/blessing";
+import { SortOptions } from "../../types/sort-options";
+import styles from "./show-blessings.module.css";
 
-const ShowBlessings = () => {
-  const { eventId } = useParams();
+const ShowBlessings: React.FC<any> = () => {
+  const { eventId } = useStore();
   const [blessings, setBlessings] = useState<Blessing[]>([]);
   const [filtered, setFiltered] = useState<Blessing[]>([]);
 
   useEffect(() => {
-    fetchBlessings();
+    // fetchBlessings();
   }, []);
 
   const fetchBlessings = async () => {
     try {
-      const {data} = await api.blessing().getByEvent(parseInt(eventId!));
+      const { data } = await api.blessing().getByEvent(eventId);
       setBlessings(data);
-      setFiltered(data)
+      setFiltered(data);
     } catch (err) {
       alert(err);
     }
@@ -38,7 +38,7 @@ const ShowBlessings = () => {
     } else {
       setFiltered(blessings);
     }
-  }; 
+  };
 
   const compareByAmount = (a: Blessing, b: Blessing) => {
     if (a.paymentAmount > b.paymentAmount) return -1;
@@ -64,18 +64,20 @@ const ShowBlessings = () => {
 
   return (
     <>
-    <h2 className={styles['blessings-screen-header']}>All Blessings</h2>
-    <Toolbar handleSearch={handleSearch} options={SortOptions} handleSort={handleSort}/>
-    <div className={styles['blessings-container']}>
-      <div className={styles.blessingsContainer}>
+      <h2 className={styles.header}>All Blessings</h2>
+      <Toolbar
+        handleSearch={handleSearch}
+        options={SortOptions}
+        handleSort={handleSort}
+      />
+
+      <div className={styles.container}>
         {filtered &&
           filtered.map((blessing) => {
             return <BlessingItem key={"" + blessing.id} {...blessing} />;
           })}
       </div>
-    </div>
     </>
-
   );
 };
 

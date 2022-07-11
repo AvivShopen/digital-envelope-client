@@ -1,10 +1,9 @@
 
 export interface Event {
     id: number;
-    text: string;
-    createdBy: string;
-    createdAt: Date;
-    eventId: number;
-    paymentAmount: number;
+    name: string
+    estimatedGuests: number
+    createdAt: Date
+    lastUpdatedAt: Date
 }
 

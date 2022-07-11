@@ -1,9 +1,9 @@
-.blessings-container{ 
+.container{ 
     display: flex;
     flex-direction: column;
     max-height: 60vh;
     overflow-y: scroll;
 }
-.blessings-screen-header{
+.header{
     text-align: center;
 }
