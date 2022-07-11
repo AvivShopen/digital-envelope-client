@@ -1,0 +1,5 @@
+.grid{
+    display: grid;
+    width: 40vw;
+    grid-template: "a b c";
+}
