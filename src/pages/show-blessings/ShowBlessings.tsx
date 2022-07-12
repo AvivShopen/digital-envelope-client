@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import api from "../../api";
 import BlessingItem from "../../components/blessing-item";
 import Toolbar from "../../components/toolbar/Toolbar";
-import useStore from "../../states/store";
+import { useEventStore } from "../../state/event-store";
 import { Blessing } from "../../types/blessing";
 import { SortOptions } from "../../types/sort-options";
 import styles from "./show-blessings.module.css";
 
 const ShowBlessings: React.FC<any> = () => {
-  const { eventId } = useStore();
+  const { eventId } = useEventStore();
   const [blessings, setBlessings] = useState<Blessing[]>([]);
   const [filtered, setFiltered] = useState<Blessing[]>([]);
 

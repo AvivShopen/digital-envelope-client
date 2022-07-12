@@ -1,21 +1,25 @@
 import Axios, { AxiosResponse } from "axios";
 import { Blessing } from "./types/blessing";
+import { Event, ICreateEvent } from "./types/event";
 
 const serverUrl = "http://localhost:3001";
 
 export default {
   blessing() {
     return {
-      async getByEvent(eventId: number): Promise<AxiosResponse<Blessing[]>> {
-        return await Axios.get(`${serverUrl}/blessing/${eventId}`);
+      getByEvent(eventId: number): Promise<AxiosResponse<Blessing[]>> {
+        return Axios.get(`${serverUrl}/blessing/${eventId}`);
       },
     };
   },
   events() {
     return {
-      async getEventsByUser(userId: number): Promise<AxiosResponse<Event[]>> {
-        return await Axios.get(`${serverUrl}/events/${userId}`);
-      }
-    }
-  }
+      getByUser(userId: number): Promise<AxiosResponse<Event[]>> {
+        return Axios.get(`${serverUrl}/events/${userId}`);
+      },
+      create(event: ICreateEvent): Promise<AxiosResponse<Event>> {
+        return Axios.post(`${serverUrl}/events`);
+      },
+    };
+  },
 };
