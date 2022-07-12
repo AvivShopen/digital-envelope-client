@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useEventStore } from "../../state/event-store";
+import { useEventStore } from "../../states/event-store";
 import styles from "./event-item.module.css";
 
 interface Props {
