@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import api from "../../api";
-import BlessingItem from "../../components/BlessingItem";
+import React, { useEffect, useMemo, useState } from "react";
+import useApi from "../../hooks/useApi";
+import BlessingItem from "../../components/blessing-item/BlessingItem";
 import Toolbar from "../../components/toolbar/Toolbar";
 import { useEventStore } from "../../states/event-store";
 import { Blessing } from "../../types/blessing";
@@ -22,14 +22,13 @@ const ShowBlessings: React.FC<any> = () => {
 
   const fetchBlessings = async () => {
     try {
-      const { data } = await api.blessing().getByEvent(eventId);
+      const { data } = await useApi.blessing().getByEvent(eventId);
       setBlessings(data);
       setFiltered(data);
     } catch (err) {
       alert(err);
     }
   };
-
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const query = e.currentTarget.value.toLowerCase() as string;
@@ -48,9 +47,10 @@ const ShowBlessings: React.FC<any> = () => {
     e.preventDefault();
     const option = e.target.value as SortOptions;
     if (option === SortOptions.Amount) {
-      setFiltered(blessings.sort(compareByAmount));
+      setFiltered((blessings) => blessings.sort(compareByAmount));
     } else if (option === SortOptions.Date) {
-      setFiltered(blessings.sort(compareByDate));
+      setFiltered((blessings) => blessings.sort(compareByDate));
+      console.log(filtered);
     }
   };
 

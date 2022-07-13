@@ -4,17 +4,12 @@
     margin-bottom: 1vh;
     display: flex;
     flex-direction: column;
+    width: 95%;
 }
 .date{
-    align-self: flex-end;
-    margin-right: 1vw;
+    text-align: right;
+    margin: 1%;
 }
-.amount{
-
-}
-.text{
-
-}
-.header{
-    
+.container {
+    margin-left: 1vw;
 }

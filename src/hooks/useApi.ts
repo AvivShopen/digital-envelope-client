@@ -1,10 +1,10 @@
 import Axios, { AxiosResponse } from "axios";
-import { Blessing } from "./types/blessing";
-import { Event, ICreateEvent } from "./types/event";
+import { Blessing } from "../types/blessing";
+import { Event, ICreateEvent } from "../types/event";
 
 const serverUrl = "http://localhost:3001";
 
-export default {
+const useApi = {
   blessing() {
     return {
       getByEvent(eventId: number): Promise<AxiosResponse<Blessing[]>> {
@@ -25,4 +25,13 @@ export default {
       },
     };
   },
+  qr() {
+    return {
+      generate(redirectUrl: string) {
+        return `https://api.qrserver.com/v1/create-qr-code/?data=${redirectUrl}&amp;size=100x100`
+      }
+    }
+  }
 };
+
+export default useApi;

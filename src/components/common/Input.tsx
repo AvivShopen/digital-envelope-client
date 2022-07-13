@@ -1,22 +1,8 @@
-.container{
-  display: grid;
-  place-items: center;
-  height: 90vh;
-}
+import styled from "styled-components";
 
-.field{
-  margin: 10px 0;
-}
-.buttonContainer{
-  width: 100%;
-  display: grid;
-  place-items: center;
-}
-
-.text{
+const Input = styled.input`
   font-size: 16px;
   padding: 8px 16px;
-  margin: 10px 0;
   border: unset;
   border-radius: 4px;
   outline-color: rgb(84 105 212 / 0.5);
@@ -25,4 +11,6 @@
     rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(60, 66, 87, 0.16) 0px 0px 0px 1px,
     rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
     rgba(0, 0, 0, 0) 0px 0px 0px 0px;
-}
+`;
+
+export default Input;

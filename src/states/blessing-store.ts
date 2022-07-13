@@ -1,11 +1,11 @@
 import create from "zustand";
-import { Blessing, CreateBlessing } from "../types/blessing";
+import { ICreateBlessing } from "../types/blessing";
 
 interface BlessingState {
-  blessing: CreateBlessing;
-  setBlessing: (blessing: CreateBlessing) => void;
+  blessing: ICreateBlessing;
+  setBlessing: (blessing: ICreateBlessing) => void;
 }
-const initState: CreateBlessing = {
+const initState: ICreateBlessing = {
   createdBy: "",
   eventId: 0,
   paymentAmount: 0,
@@ -13,7 +13,7 @@ const initState: CreateBlessing = {
 };
 const useStore = create<BlessingState>((set) => ({
   blessing: initState,
-  setBlessing: (blessing: CreateBlessing) => set((state) => ({ blessing })),
+  setBlessing: (blessing: ICreateBlessing) => set((state) => ({ blessing })),
 }));
 
 export { useStore as useBlessingStore };

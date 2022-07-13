@@ -1,0 +1,9 @@
+.title{
+    text-align: center;
+    margin-bottom: 10%;
+    color: #2ea44f
+}
+.container{
+    display: grid;
+    place-items: center;
+}
