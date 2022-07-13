@@ -14,11 +14,14 @@ export default {
   },
   events() {
     return {
+      getById(id: number): Promise<AxiosResponse<Event>> {
+        return Axios.get(`${serverUrl}/event/${id}`);
+      },
       getByUser(userId: number): Promise<AxiosResponse<Event[]>> {
-        return Axios.get(`${serverUrl}/events/${userId}`);
+        return Axios.get(`${serverUrl}/event/${userId}`);
       },
       create(event: ICreateEvent): Promise<AxiosResponse<Event>> {
-        return Axios.post(`${serverUrl}/events`);
+        return Axios.post(`${serverUrl}/event`, event)
       },
     };
   },

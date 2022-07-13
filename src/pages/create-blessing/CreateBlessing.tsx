@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
-import { useBlessingStore } from "../../state/blessing-store";
+import { useBlessingStore } from "../../states/blessing-store";
 import { ICreateBlessing } from "../../types/blessing";
 import styles from "./create-blessing.module.css";
 

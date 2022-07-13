@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import api from "../../api";
-import BlessingItem from "../../components/blessing-item";
+import BlessingItem from "../../components/BlessingItem";
 import Toolbar from "../../components/toolbar/Toolbar";
-import { useEventStore } from "../../state/event-store";
+import { useEventStore } from "../../states/event-store";
 import { Blessing } from "../../types/blessing";
 import { SortOptions } from "../../types/sort-options";
+import {
+  compareByAmount,
+  compareByDate,
+} from "../../utils/compare-blessings.util";
 import styles from "./show-blessings.module.css";
 
 const ShowBlessings: React.FC<any> = () => {
@@ -13,7 +17,7 @@ const ShowBlessings: React.FC<any> = () => {
   const [filtered, setFiltered] = useState<Blessing[]>([]);
 
   useEffect(() => {
-    // fetchBlessings();
+    fetchBlessings();
   }, []);
 
   const fetchBlessings = async () => {
@@ -38,18 +42,6 @@ const ShowBlessings: React.FC<any> = () => {
     } else {
       setFiltered(blessings);
     }
-  };
-
-  const compareByAmount = (a: Blessing, b: Blessing) => {
-    if (a.paymentAmount > b.paymentAmount) return -1;
-    if (a.paymentAmount < b.paymentAmount) return 1;
-    return 0;
-  };
-
-  const compareByDate = (a: Blessing, b: Blessing) => {
-    if (a.createdAt > b.createdAt) return -1;
-    if (a.createdAt < b.createdAt) return 1;
-    return 0;
   };
 
   const handleSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
