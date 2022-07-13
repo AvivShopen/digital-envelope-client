@@ -1,5 +1,5 @@
 import React from "react";
-import api from "../../api";
+import useApi from "../../hooks/useApi";
 import EventItem from "../../components/event-item/event-item";
 import styles from "./show-events.module.css";
 
@@ -12,7 +12,7 @@ const ShowEvents: React.FC<any> = () => {
   ];
 
   const fetchEvents = async () => {
-    const { data } = await api.events().getByUser(1);
+    const { data } = await useApi.events().getByUser(1);
   };
 
   return (
