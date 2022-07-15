@@ -29,13 +29,10 @@ const CreateEvent: React.FC<any> = () => {
       if (result.isConfirmed) {
         try {
           //Call api to create a new event and set its id globally
-          // Typescript acts wierd, mybe should use tsignore instead
-
-          values.estimatedGuests = parseInt(values.estimatedGuests.toString());
           const { data } = await useApi.events().create(values);
           setEvent(data.id);
 
-          // navigate("/qr");
+          navigate("/qr");
         } catch (err) {
           Swal.fire({ icon: "error", ...errorProps });
         }
@@ -73,7 +70,9 @@ const CreateEvent: React.FC<any> = () => {
             step="any"
             onChange={onChange}
           />
-          <Button type="submit">Submit</Button>
+          <div className={styles.buttonContainer}>
+            <Button type="submit">Create event</Button>
+          </div>
         </Paper>
       </form>
     </div>

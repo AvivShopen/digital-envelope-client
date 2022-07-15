@@ -1,8 +1,15 @@
 .container{
     display: grid;
     place-items: center;
-    height: 60vh;
+    height: 90vh;
 }
 .field{
     margin: 10px 0;
 }
+
+.buttonContainer{
+    width: 100%;
+    display: grid;
+    place-items: center;
+  }
+  

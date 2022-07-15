@@ -21,17 +21,24 @@ const useApi = {
         return Axios.get(`${serverUrl}/event/${userId}`);
       },
       create(event: ICreateEvent): Promise<AxiosResponse<Event>> {
-        return Axios.post(`${serverUrl}/event`, event)
+        return Axios.post(`${serverUrl}/event`, event);
       },
     };
   },
   qr() {
     return {
       generate(redirectUrl: string) {
-        return `https://api.qrserver.com/v1/create-qr-code/?data=${redirectUrl}&amp;size=100x100`
-      }
-    }
-  }
+        return `https://api.qrserver.com/v1/create-qr-code/?data=${redirectUrl}&amp;size=100x100`;
+      },
+    };
+  },
+  dashboard() {
+    return {
+      getData(eventId: number): Promise<AxiosResponse<any>> {
+        return Axios.get(`${serverUrl}/dashboard/${eventId}`);
+      },
+    };
+  },
 };
 
 export default useApi;

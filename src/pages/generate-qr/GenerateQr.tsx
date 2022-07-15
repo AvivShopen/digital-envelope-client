@@ -11,7 +11,7 @@ export default function GenerateQr() {
     .generate(`${import.meta.env.VITE_CLIENT_URL}/blessings/${eventId}`);
 
   useEffect(() => {
-    // fetchEvent();
+    fetchEvent();
   }, []);
 
   const fetchEvent = async () => {
@@ -25,9 +25,7 @@ export default function GenerateQr() {
   };
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>
-        {eventName ? eventName && "Welcome to" + eventName : "Hi"}
-      </h2>
+      <h2 className={styles.title}>{eventName && "Welcome to" + eventName}</h2>
       <img src={QR} alt="QR_CODE" title="QR" />
     </div>
   );

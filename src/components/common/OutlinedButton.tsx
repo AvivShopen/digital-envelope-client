@@ -9,8 +9,8 @@ const OutlinedButton = styled.button`
   color: rgb(84, 105, 212);
   border: unset;
   border-radius: 4px;
-  padding: 8px 16px;
-  font-size: 16px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.85rem;
   font-weight: 400;
   cursor: pointer;
 `;
