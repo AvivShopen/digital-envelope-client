@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useEventStore } from "../../states/event-store";
-import styles from "./event-item.module.css";
+import { useEventStore } from "../../../states/event-store";
 
 interface Props {
   eventId: number;
@@ -11,12 +10,8 @@ interface Props {
 const EventItem: React.FC<Props> = ({ children, eventId }) => {
   const setEvent = useEventStore((state) => state.setEvent);
   return (
-    <div className={styles.container}>
-      <Link
-        className={styles.name}
-        onClick={() => setEvent(eventId)}
-        to={"/blessings"}
-      >
+    <div>
+      <Link onClick={() => setEvent(eventId)} to={"/blessings"}>
         {children}
       </Link>
     </div>

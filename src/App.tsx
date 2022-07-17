@@ -7,7 +7,7 @@ import CreateBlessing from "./pages/create-blessing";
 import Dashboard from "./pages/dashboard";
 import CreateEvent from "./pages/create-event";
 import HomePage from "./pages/home";
-import Header from "./components/header/Header";
+import Header from "./components/header";
 import { ThemeProvider } from "@mui/material";
 import theme from "./theme/theme";
 

@@ -28,7 +28,7 @@ const useApi = {
   qr() {
     return {
       generate(redirectUrl: string) {
-        return `https://api.qrserver.com/v1/create-qr-code/?data=${redirectUrl}&amp;size=100x100`;
+        return `https://api.qrserver.com/v1/create-qr-code/?data=${redirectUrl}&amp;size=80x80`;
       },
     };
   },

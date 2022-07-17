@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Container from "../../components/Container";
 import useApi from "../../hooks/useApi";
 import { useEventStore } from "../../states/event-store";
-import { Header } from "./styles";
+import { Footer, Header, StyledPaper } from "./styles";
 
 export default function GenerateQr() {
   const { eventId } = useEventStore();
@@ -26,8 +26,11 @@ export default function GenerateQr() {
   };
   return (
     <Container>
-      <Header>{eventName && "Welcome to" + eventName}</Header>
-      <img src={QR} alt="QR_CODE" title="QR" />
+      <StyledPaper>
+        <Header>{eventName && "Welcome to " + eventName}</Header>
+        <img src={QR} alt="QR_CODE" title="QR" />
+        <Footer>Scan the QR code to participate</Footer>
+      </StyledPaper>
     </Container>
   );
 }

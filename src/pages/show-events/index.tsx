@@ -1,7 +1,6 @@
 import React from "react";
 import useApi from "../../hooks/useApi";
-import EventItem from "../../components/event-item/event-item";
-import styles from "./show-events.module.css";
+import EventItem from "./event-item";
 
 const ShowEvents: React.FC<any> = () => {
   const mockEvents = [
@@ -18,7 +17,7 @@ const ShowEvents: React.FC<any> = () => {
   return (
     <div>
       <h2>My events</h2>
-      <div className={styles.grid}>
+      <div>
         {mockEvents.map((event, index) => {
           return (
             <EventItem key={"" + index} eventId={1}>

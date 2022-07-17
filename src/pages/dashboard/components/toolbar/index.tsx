@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { SortOptions } from "../../types/sort-options";
-import styles from "./toolbar.module.css";
+import { useState } from "react";
+import { SortOptions } from "../../../../types/sort-options";
 
 interface ToolbarProps {
   handleSearch: (e: any) => void;
@@ -11,7 +10,7 @@ interface ToolbarProps {
 const Toolbar = ({ options, handleSearch, handleSort }: ToolbarProps) => {
   const [selected, setSelected] = useState("");
   return (
-    <div className={styles.container}>
+    <div>
       <input placeholder="Search..." onChange={(e) => handleSearch(e)} />
       <div>
         Sort by &nbsp;

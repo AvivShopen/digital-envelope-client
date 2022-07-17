@@ -17,4 +17,10 @@ export const Header = styled(Typography)(({ theme }) => ({
   marginTop: theme.spacing(2),
 }));
 
-export const Submit = styled(Button)(({ theme }) => ({}));
+export const Submit = styled(Button)(({ theme }) => ({
+  width: "35%",
+  height: "5vh",
+  [theme.breakpoints.down("md")]: {
+    width: "70%",
+  },
+}));

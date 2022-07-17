@@ -1,15 +1,23 @@
-import { Button } from "@mui/material";
-import { StyledPaper } from "./styles";
+import { Box, Stack } from "@mui/material";
+import GoogleSignInSection from "./components/google-section";
+import { Header, InnerContainer, Scrollable, SpacedButton } from "./styles";
 
 function HomePage() {
   return (
-    <StyledPaper>
-      <h1>Digital Envelope</h1>
-      <div>
-        <Button>Get started</Button>
-        <Button variant="outlined">How it works</Button>
-      </div>
-    </StyledPaper>
+    <Stack direction="row">
+      <InnerContainer>
+        <Header>Digital Envelope</Header>
+        <Box>
+          <SpacedButton variant="outlined">How it works</SpacedButton>
+          <SpacedButton variant="contained">Get started</SpacedButton>
+        </Box>
+      </InnerContainer>
+      <Scrollable>
+        <GoogleSignInSection />
+        <GoogleSignInSection />
+        <GoogleSignInSection />
+      </Scrollable>
+    </Stack>
   );
 }
 

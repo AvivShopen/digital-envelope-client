@@ -6,7 +6,15 @@ import { useNavigate } from "react-router-dom";
 import useApi from "../../hooks/useApi";
 import Swal from "sweetalert2";
 import { errorProps } from "../../utils/error-msg.props";
-import { Box, Button, Paper, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Input,
+  InputLabel,
+  Paper,
+  TextField,
+  Typography,
+} from "@mui/material";
 import Container from "../../components/Container";
 import { Header, StyledPaper, Submit } from "./styles";
 
@@ -48,26 +56,28 @@ const CreateEvent: React.FC<any> = () => {
     <Container onSubmit={onSubmit} component="form">
       <StyledPaper>
         <Header variant="h3">Welcome, $User </Header>
-        <Typography>How would you name your event?</Typography>
-        <TextField
-          name="name"
-          value={values.name}
-          variant="standard"
-          onChange={onChange}
-        />
-        <Typography>How many guests are expected?</Typography>
-        <TextField
-          name="estimatedGuests"
-          value={values.estimatedGuests}
-          variant="standard"
-          type="number"
-          onChange={onChange}
-        />
         <Box>
-          <Submit type="submit" variant="contained">
-            Create event
-          </Submit>
+          <InputLabel htmlFor="name">Event's name</InputLabel>
+          <Input
+            name="name"
+            id="name"
+            value={values.name}
+            onChange={onChange}
+          />
         </Box>
+        <Box>
+          <InputLabel htmlFor="guests">Guests expected</InputLabel>
+          <Input
+            id="guests"
+            name="estimatedGuests"
+            value={values.estimatedGuests}
+            type="number"
+            onChange={onChange}
+          />
+        </Box>
+        <Submit type="submit" variant="contained">
+          Create event
+        </Submit>
       </StyledPaper>
     </Container>
   );

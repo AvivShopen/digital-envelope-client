@@ -13,6 +13,7 @@ const Dashboard = () => {
   const fetchData = async () => {
     const { data } = await useApi.dashboard().getData(8);
     setData((prev) => data);
+    console.log(data);
   };
 
   useEffect(() => {

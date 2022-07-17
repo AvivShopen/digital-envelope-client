@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useApi from "../../../../hooks/useApi";
-import BlessingItem from "../../../../components/blessing-item/BlessingItem";
-import Toolbar from "../../../../components/toolbar/Toolbar";
+import BlessingItem from "./components/blessing-item";
+import Toolbar from "../toolbar";
 import { useEventStore } from "../../../../states/event-store";
 import { Blessing } from "../../../../types/blessing";
 import { SortOptions } from "../../../../types/sort-options";
@@ -9,7 +9,6 @@ import {
   compareByAmount,
   compareByDate,
 } from "../../../../utils/compare-blessings.util";
-import styles from "./show-blessings.module.css";
 
 const ShowBlessings: React.FC<any> = () => {
   const { eventId } = useEventStore();
@@ -56,14 +55,14 @@ const ShowBlessings: React.FC<any> = () => {
 
   return (
     <>
-      <h2 className={styles.header}>All Blessings</h2>
+      <h2>All Blessings</h2>
       <Toolbar
         handleSearch={handleSearch}
         options={SortOptions}
         handleSort={handleSort}
       />
 
-      <div className={styles.container}>
+      <div>
         {filtered &&
           filtered.map((blessing) => {
             return <BlessingItem key={"" + blessing.id} {...blessing} />;
