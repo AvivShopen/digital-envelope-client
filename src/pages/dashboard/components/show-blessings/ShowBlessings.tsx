@@ -1,14 +1,14 @@
-import React, { useEffect, useMemo, useState } from "react";
-import useApi from "../../hooks/useApi";
-import BlessingItem from "../../components/blessing-item/BlessingItem";
-import Toolbar from "../../components/toolbar/Toolbar";
-import { useEventStore } from "../../states/event-store";
-import { Blessing } from "../../types/blessing";
-import { SortOptions } from "../../types/sort-options";
+import React, { useEffect, useState } from "react";
+import useApi from "../../../../hooks/useApi";
+import BlessingItem from "../../../../components/blessing-item/BlessingItem";
+import Toolbar from "../../../../components/toolbar/Toolbar";
+import { useEventStore } from "../../../../states/event-store";
+import { Blessing } from "../../../../types/blessing";
+import { SortOptions } from "../../../../types/sort-options";
 import {
   compareByAmount,
   compareByDate,
-} from "../../utils/compare-blessings.util";
+} from "../../../../utils/compare-blessings.util";
 import styles from "./show-blessings.module.css";
 
 const ShowBlessings: React.FC<any> = () => {

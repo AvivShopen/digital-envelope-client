@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import Container from "../../components/Container";
 import useApi from "../../hooks/useApi";
 import { useEventStore } from "../../states/event-store";
-import styles from "./generate-qr.module.css";
+import { Header } from "./styles";
 
 export default function GenerateQr() {
   const { eventId } = useEventStore();
@@ -17,16 +18,16 @@ export default function GenerateQr() {
   const fetchEvent = async () => {
     try {
       //Get the events name from server
-      const { data } = await useApi.events().getById(eventId);
+      const { data } = await useApi.events().getById(8);
       setEventName(data.name);
     } catch (err) {
       alert(err);
     }
   };
   return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>{eventName && "Welcome to" + eventName}</h2>
+    <Container>
+      <Header>{eventName && "Welcome to" + eventName}</Header>
       <img src={QR} alt="QR_CODE" title="QR" />
-    </div>
+    </Container>
   );
 }

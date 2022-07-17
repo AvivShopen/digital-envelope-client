@@ -1,7 +1,7 @@
 interface IDashboard {
   averagePerGuest: number;
   paidGuests: {
-    current: string | number;
+    current: number;
     max: number;
   };
   totalAmount: number;

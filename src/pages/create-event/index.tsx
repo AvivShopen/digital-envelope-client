@@ -4,12 +4,11 @@ import { useEventStore } from "../../states/event-store";
 import { ICreateEvent } from "../../types/event";
 import { useNavigate } from "react-router-dom";
 import useApi from "../../hooks/useApi";
-import styles from "./create-event.module.css";
-import Paper from "../../components/common/Paper";
-import Button from "../../components/common/Button";
-import Input from "../../components/common/Input";
 import Swal from "sweetalert2";
 import { errorProps } from "../../utils/error-msg.props";
+import { Box, Button, Paper, TextField, Typography } from "@mui/material";
+import Container from "../../components/Container";
+import { Header, StyledPaper, Submit } from "./styles";
 
 const CreateEvent: React.FC<any> = () => {
   const { setEvent } = useEventStore();
@@ -46,36 +45,31 @@ const CreateEvent: React.FC<any> = () => {
   });
 
   return (
-    <div className={styles.container}>
-      <form onSubmit={onSubmit}>
-        <Paper>
-          <h1>Welcome, $User </h1>
-
-          <label htmlFor="name">How would you name the event?</label>
-          <Input
-            name="name"
-            className={styles.field}
-            value={values.name}
-            onChange={onChange}
-          />
-          <label htmlFor="estimatedGuests">
-            How many guests are expected to attend?
-          </label>
-          <Input
-            className={styles.field}
-            name="estimatedGuests"
-            value={values.estimatedGuests}
-            type="number"
-            min="1"
-            step="any"
-            onChange={onChange}
-          />
-          <div className={styles.buttonContainer}>
-            <Button type="submit">Create event</Button>
-          </div>
-        </Paper>
-      </form>
-    </div>
+    <Container onSubmit={onSubmit} component="form">
+      <StyledPaper>
+        <Header variant="h3">Welcome, $User </Header>
+        <Typography>How would you name your event?</Typography>
+        <TextField
+          name="name"
+          value={values.name}
+          variant="standard"
+          onChange={onChange}
+        />
+        <Typography>How many guests are expected?</Typography>
+        <TextField
+          name="estimatedGuests"
+          value={values.estimatedGuests}
+          variant="standard"
+          type="number"
+          onChange={onChange}
+        />
+        <Box>
+          <Submit type="submit" variant="contained">
+            Create event
+          </Submit>
+        </Box>
+      </StyledPaper>
+    </Container>
   );
 };
 
