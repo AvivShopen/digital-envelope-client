@@ -12,11 +12,6 @@ export const StyledPaper = styled(Paper)(({ theme }) => ({
   },
 }));
 
-export const Header = styled(Typography)(({ theme }) => ({
-  marginBottom: theme.spacing(2),
-  marginTop: theme.spacing(2),
-}));
-
 export const Submit = styled(Button)(({ theme }) => ({
   width: "35%",
   height: "5vh",

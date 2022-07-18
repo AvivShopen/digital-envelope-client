@@ -6,17 +6,9 @@ import { useNavigate } from "react-router-dom";
 import useApi from "../../hooks/useApi";
 import Swal from "sweetalert2";
 import { errorProps } from "../../utils/error-msg.props";
-import {
-  Box,
-  Button,
-  Input,
-  InputLabel,
-  Paper,
-  TextField,
-  Typography,
-} from "@mui/material";
-import Container from "../../components/Container";
-import { Header, StyledPaper, Submit } from "./styles";
+import { Box, Input, InputLabel, TextField, Typography } from "@mui/material";
+import Container from "../../components/CenteringContainer";
+import { StyledPaper, Submit } from "./styles";
 
 const CreateEvent: React.FC<any> = () => {
   const { setEvent } = useEventStore();
@@ -29,7 +21,7 @@ const CreateEvent: React.FC<any> = () => {
       icon: "question",
       iconColor: "#5469d4",
       confirmButtonText: "Yes, create it!",
-      confirmButtonColor: "#5469d4",
+      confirmButtonColor: "#5048E5",
       cancelButtonColor: "#f27474",
       showCancelButton: true,
     }).then(async (result) => {
@@ -55,7 +47,7 @@ const CreateEvent: React.FC<any> = () => {
   return (
     <Container onSubmit={onSubmit} component="form">
       <StyledPaper>
-        <Header variant="h3">Welcome, $User </Header>
+        <Typography variant="h2">Welcome, $User </Typography>
         <Box>
           <InputLabel htmlFor="name">Event's name</InputLabel>
           <Input

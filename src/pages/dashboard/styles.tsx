@@ -1,16 +1,12 @@
-import { Box, styled, Typography } from "@mui/material";
+import { styled, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 
-export const GridContainer = styled(Box)(({ theme }) => ({
-  display: "flex",
-  marginTop: "20vh",
-  flexDirection: "row",
-  justifyContent: "space-evenly",
-  width: "100vw",
-  height: "45vh",
+export const DashboardLayoutRoot = styled("div")(({ theme }) => ({
+  paddingTop: 64,
 }));
 
-export const Layout = styled(Box)(({ theme }) => ({
-  height: "100vh",
-  display: "grid",
-  placeItems: "center",
+export const StatBox = styled(Box)(({ theme }) => ({
+  paddingTop: 6,
+  display: "flex",
+  alignItems: "center",
 }));

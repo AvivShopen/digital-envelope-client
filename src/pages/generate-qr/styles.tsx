@@ -1,9 +1,4 @@
-import { Paper, styled, Typography } from "@mui/material";
-
-export const Footer = styled(Typography)(({ theme }) => ({
-  marginTop: theme.spacing(2),
-  textAlign: "center",
-}));
+import { Paper, styled } from "@mui/material";
 
 export const StyledPaper = styled(Paper)(({ theme }) => ({
   width: "70vw",

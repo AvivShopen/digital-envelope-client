@@ -6,16 +6,9 @@ import { ICreateBlessing } from "../../types/blessing";
 import useApi from "../../hooks/useApi";
 import Swal from "sweetalert2";
 import { errorProps } from "../../utils/error-msg.props";
-import {
-  Box,
-  Button,
-  Input,
-  InputLabel,
-  TextField,
-  Typography,
-} from "@mui/material";
-import Container from "../../components/Container";
-import { Header, StyledPaper, Submit } from "./styles";
+import { Box, Input, InputLabel, TextField, Typography } from "@mui/material";
+import Container from "../../components/CenteringContainer";
+import { StyledPaper, Submit } from "./styles";
 
 const SubmitBlessing: React.FC<any> = () => {
   const { setBlessing, blessing } = useBlessingStore();
@@ -23,7 +16,8 @@ const SubmitBlessing: React.FC<any> = () => {
   const [eventName, setEventName] = useState<string>("");
 
   useEffect(() => {
-    fetchEvent();
+    // fetchEvent();
+    setEventName("Mock event");
   }, []);
 
   const handleSubmit = () => {
@@ -44,7 +38,7 @@ const SubmitBlessing: React.FC<any> = () => {
   return (
     <Container component="form" onSubmit={onSubmit}>
       <StyledPaper>
-        <Header>{"Welcome to " + eventName}</Header>
+        <Typography variant="h3">{eventName}</Typography>
         <Box>
           <InputLabel htmlFor="createdBy">Guest name</InputLabel>
           <Input

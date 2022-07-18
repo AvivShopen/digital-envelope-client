@@ -1,9 +1,9 @@
+import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { CenteredHeader } from "../../components/CenteredHeader";
-import Container from "../../components/Container";
+import CenteringContainer from "../../components/CenteringContainer";
 import useApi from "../../hooks/useApi";
 import { useEventStore } from "../../states/event-store";
-import { Footer, StyledPaper } from "./styles";
+import { StyledPaper } from "./styles";
 
 export default function GenerateQr() {
   const { eventId } = useEventStore();
@@ -13,7 +13,8 @@ export default function GenerateQr() {
     .generate(`${import.meta.env.VITE_CLIENT_URL}/blessings/${eventId}`);
 
   useEffect(() => {
-    fetchEvent();
+    // fetchEvent();
+    setEventName("Mock event");
   }, []);
 
   const fetchEvent = async () => {
@@ -26,14 +27,14 @@ export default function GenerateQr() {
     }
   };
   return (
-    <Container>
+    <CenteringContainer>
       <StyledPaper>
-        <CenteredHeader>
+        <Typography variant="h2">
           {eventName && "Welcome to " + eventName}
-        </CenteredHeader>
+        </Typography>
         <img src={QR} alt="QR_CODE" title="QR" />
-        <Footer>Scan the QR code to participate</Footer>
+        <Typography variant="body1">Scan the QR code to participate</Typography>
       </StyledPaper>
-    </Container>
+    </CenteringContainer>
   );
 }

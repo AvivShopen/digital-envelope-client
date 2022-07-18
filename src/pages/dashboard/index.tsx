@@ -1,18 +1,23 @@
-import { Typography } from "@mui/material";
+import { Box, Grid, LinearProgress, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import StyledProgressBar from "../../components/StyledProgressBar";
 import useApi from "../../hooks/useApi";
 import { useEventStore } from "../../states/event-store";
 import IDashboard from "../../types/dashboard";
 import ShowBlessings from "./components/show-blessings";
-import DashboardCard from "./components/dashboard-card";
-import { GridContainer, Layout } from "./styles";
-import { CenteredHeader } from "../../components/CenteredHeader";
+import DashboardCard from "./components/dashboard-item";
+import { DashboardLayoutRoot, StatBox } from "./styles";
+import InsertChartIcon from "@mui/icons-material/InsertChart";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import GroupIcon from "@mui/icons-material/Group";
+import { Container } from "@mui/system";
+import { ArrowDownward } from "@mui/icons-material";
+import EventNoteIcon from "@mui/icons-material/EventNote";
+import DashboardToolbar from "./components/toolbar";
 
 const Dashboard = () => {
   const { eventId } = useEventStore();
   const [data, setData] = useState<IDashboard>();
-  const [eventName, setEventName] = useState<String>("");
+  const [eventName, setEventName] = useState<string>("");
 
   const fetchData = async () => {
     const { data } = await useApi.dashboard().getData(8);
@@ -25,7 +30,7 @@ const Dashboard = () => {
     const mockData: IDashboard = {
       averagePerGuest: 120,
       paidGuests: {
-        current: 5,
+        current: 50,
         max: 100,
       },
       totalAmount: 1500,
@@ -38,32 +43,83 @@ const Dashboard = () => {
   return (
     <>
       {data ? (
-        <Layout>
-          <CenteredHeader>{eventName}</CenteredHeader>
-          <GridContainer>
-            <DashboardCard title="Average per guest">
-              <Typography>
-                {Math.floor(data?.averagePerGuest!) + " $"}
-              </Typography>
-            </DashboardCard>
+        <>
+          <DashboardLayoutRoot>
+            <DashboardToolbar eventName={eventName} />
+            <Container maxWidth={false}>
+              <Grid container spacing={3}>
+                <Grid item lg={3} sm={6} xl={3} xs={12}>
+                  <DashboardCard
+                    title="AVERAGE PER GUEST"
+                    iconColor="#D14343"
+                    icon={<InsertChartIcon />}
+                    mainStat={data.averagePerGuest + " $"}
+                  >
+                    <StatBox>
+                      <ArrowDownward color="error" />
+                      <Typography
+                        color="error"
+                        sx={{
+                          mr: 1,
+                        }}
+                        variant="body2"
+                      >
+                        12%
+                      </Typography>
+                      <Typography color="textSecondary" variant="caption">
+                        Compared to similar events
+                      </Typography>
+                    </StatBox>
+                  </DashboardCard>
+                </Grid>
+                <Grid item lg={3} sm={6} xl={3} xs={12}>
+                  <DashboardCard
+                    title="EVENT CLOSES AT"
+                    iconColor="#5048E5"
+                    icon={<EventNoteIcon />}
+                    mainStat={"17/02/2023"}
+                  >
+                    <Typography color="textSecondary" variant="caption">
+                      15 days left
+                    </Typography>
+                  </DashboardCard>
+                </Grid>
 
-            <DashboardCard title="Total amount collected">
-              <Typography>{data?.totalAmount + " $"}</Typography>
-            </DashboardCard>
-
-            <DashboardCard title="Total guests paid">
-              <StyledProgressBar
-                variant="determinate"
-                value={(data.paidGuests.current * 100) / data.paidGuests.max}
-              />
-              <Typography>
-                {data.paidGuests.current + " / " + data.paidGuests.max}
-              </Typography>
-            </DashboardCard>
-          </GridContainer>
-          <ShowBlessings />
-        </Layout>
+                <Grid item lg={3} sm={6} xl={3} xs={12}>
+                  <DashboardCard
+                    title="GUESTS PAID"
+                    iconColor="#FFB020"
+                    icon={<GroupIcon />}
+                    mainStat={
+                      (data.paidGuests.current / data.paidGuests.max) * 100 +
+                      " %"
+                    }
+                  >
+                    <Box sx={{ pt: 3 }}>
+                      <LinearProgress
+                        value={
+                          (data.paidGuests.current / data.paidGuests.max) * 100
+                        }
+                        variant="determinate"
+                      />
+                    </Box>
+                  </DashboardCard>
+                </Grid>
+                <Grid item lg={3} sm={6} xl={3} xs={12}>
+                  <DashboardCard
+                    title="MONEY COLLECTED"
+                    iconColor="#14B8A6"
+                    icon={<AttachMoneyIcon />}
+                    mainStat={data.totalAmount + " $"}
+                  ></DashboardCard>
+                </Grid>
+              </Grid>
+            </Container>
+          </DashboardLayoutRoot>
+        </>
       ) : (
+        // {/* <ShowBlessings /> */}
+
         <h2>"Loading..."</h2>
       )}
     </>

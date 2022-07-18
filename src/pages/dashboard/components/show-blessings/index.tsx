@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useApi from "../../../../hooks/useApi";
 import BlessingItem from "./components/blessing-item";
-import Toolbar from "../toolbar";
+import Toolbar from "./components/toolbar";
 import { useEventStore } from "../../../../states/event-store";
 import { Blessing } from "../../../../types/blessing";
 import { SortOptions } from "../../../../types/sort-options";

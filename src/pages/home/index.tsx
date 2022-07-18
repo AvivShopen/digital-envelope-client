@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import StyledProgressBar from "../../components/StyledProgressBar";
 import GoogleSignInSection from "./components/google-section";
 import {
   Header,

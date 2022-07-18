@@ -1,6 +1,6 @@
 import { AppBar, Avatar, Box, IconButton, Typography } from "@mui/material";
 import { styled, experimental_sx as sx } from "@mui/system";
-import theme from "../../theme/theme";
+import theme from "../../theme";
 
 export const RowAppBar = styled(AppBar)(({ theme }) => ({
   flexGrow: 1,

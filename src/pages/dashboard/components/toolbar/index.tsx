@@ -1,34 +1,29 @@
-import { useState } from "react";
-import { SortOptions } from "../../../../types/sort-options";
+import { Button, Typography } from "@mui/material";
+import { Box } from "@mui/system";
+import React from "react";
+import { PageContainer } from "./styles";
+import DeleteIcon from "@mui/icons-material/Delete";
 
-interface ToolbarProps {
-  handleSearch: (e: any) => void;
-  options: typeof SortOptions;
-  handleSort: (e: any) => void;
+interface Props {
+  eventName: string;
 }
 
-const Toolbar = ({ options, handleSearch, handleSort }: ToolbarProps) => {
-  const [selected, setSelected] = useState("");
+const DashboardToolbar: React.FC<Props> = ({ eventName }) => {
   return (
-    <div>
-      <input placeholder="Search..." onChange={(e) => handleSearch(e)} />
-      <div>
-        Sort by &nbsp;
-        <select
-          value={selected}
-          onChange={(e) => {
-            handleSort(e);
-            setSelected(e.target.value);
-          }}
-        >
-          {(Object.keys(options) as Array<SortOptions>).map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-      </div>
-    </div>
+    <Box>
+      <PageContainer>
+        <Typography variant="h4">{eventName}</Typography>
+        <Box sx={{ m: 1 }}>
+          <Button startIcon={<DeleteIcon fontSize="small" />} sx={{ mr: 1 }}>
+            Delete
+          </Button>
+          <Button color="primary" variant="contained">
+            Close event
+          </Button>
+        </Box>
+      </PageContainer>
+    </Box>
   );
 };
-export default Toolbar;
+
+export default DashboardToolbar;

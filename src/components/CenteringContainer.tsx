@@ -1,9 +1,9 @@
 import { Box, styled } from "@mui/material";
 
-const Container = styled(Box)(({ theme }) => ({
+const CenteringContainer = styled(Box)(({ theme }) => ({
   height: "90vh",
   display: "grid",
   placeContent: "center",
 }));
 
-export default Container;
+export default CenteringContainer;
