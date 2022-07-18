@@ -1,10 +1,17 @@
-import { Box, Stack } from "@mui/material";
+import { Box } from "@mui/material";
+import StyledProgressBar from "../../components/StyledProgressBar";
 import GoogleSignInSection from "./components/google-section";
-import { Header, InnerContainer, Scrollable, SpacedButton } from "./styles";
+import {
+  Header,
+  InnerContainer,
+  Layout,
+  Scrollable,
+  SpacedButton,
+} from "./styles";
 
 function HomePage() {
   return (
-    <Stack direction="row">
+    <Layout>
       <InnerContainer>
         <Header>Digital Envelope</Header>
         <Box>
@@ -17,7 +24,7 @@ function HomePage() {
         <GoogleSignInSection />
         <GoogleSignInSection />
       </Scrollable>
-    </Stack>
+    </Layout>
   );
 }
 

@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useApi from "../../hooks/useApi";
-import EventItem from "./event-item";
+import { Event } from "../../types/event";
+import EventItem from "./components/event-item";
 
-const ShowEvents: React.FC<any> = () => {
+const ShowEvents: React.FC<void> = () => {
+  const [events, setEvents] = useState<Event[]>([]);
+
+  useEffect(() => {
+    // fetchEvents();
+  }, []);
+
   const mockEvents = [
     { name: "Omers bar miztva" },
     { name: "Omers wedding" },
@@ -12,6 +19,7 @@ const ShowEvents: React.FC<any> = () => {
 
   const fetchEvents = async () => {
     const { data } = await useApi.events().getByUser(1);
+    setEvents((prev) => data);
   };
 
   return (

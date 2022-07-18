@@ -9,6 +9,7 @@ export const RowAppBar = styled(AppBar)(({ theme }) => ({
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
+  marginBotton: theme.spacing(2),
 }));
 
 export const LogoHeader = styled(Typography)(({ theme }) => ({

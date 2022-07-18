@@ -21,13 +21,11 @@ const Toolbar = ({ options, handleSearch, handleSort }: ToolbarProps) => {
             setSelected(e.target.value);
           }}
         >
-          {(Object.keys(options) as Array<keyof typeof options>).map(
-            (option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            )
-          )}
+          {(Object.keys(options) as Array<SortOptions>).map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
         </select>
       </div>
     </div>

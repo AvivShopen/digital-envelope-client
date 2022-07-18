@@ -1,6 +1,6 @@
 import "./App.css";
 import GenerateQr from "./pages/generate-qr";
-import ShowBlessings from "./pages/dashboard/components/show-blessings/ShowBlessings";
+import ShowBlessings from "./pages/dashboard/components/show-blessings";
 import { Routes, Route } from "react-router-dom";
 import ShowEvents from "./pages/show-events";
 import CreateBlessing from "./pages/create-blessing";

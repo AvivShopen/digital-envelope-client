@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import { CenteredHeader } from "../../components/CenteredHeader";
 import Container from "../../components/Container";
 import useApi from "../../hooks/useApi";
 import { useEventStore } from "../../states/event-store";
-import { Footer, Header, StyledPaper } from "./styles";
+import { Footer, StyledPaper } from "./styles";
 
 export default function GenerateQr() {
   const { eventId } = useEventStore();
@@ -27,7 +28,9 @@ export default function GenerateQr() {
   return (
     <Container>
       <StyledPaper>
-        <Header>{eventName && "Welcome to " + eventName}</Header>
+        <CenteredHeader>
+          {eventName && "Welcome to " + eventName}
+        </CenteredHeader>
         <img src={QR} alt="QR_CODE" title="QR" />
         <Footer>Scan the QR code to participate</Footer>
       </StyledPaper>

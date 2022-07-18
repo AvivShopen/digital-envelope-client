@@ -1,5 +1,5 @@
-import { Paper, Typography, Box } from "@mui/material";
 import React from "react";
+import { DashboradItemHeader, DashboardPaper, StatsChildren } from "./styles";
 
 interface DashboardProps {
   title: string;
@@ -8,10 +8,10 @@ interface DashboardProps {
 
 const DashboardCard: React.FC<DashboardProps> = ({ children, title }) => {
   return (
-    <Paper>
-      <Typography>{title}</Typography>
-      <Box>{children}</Box>
-    </Paper>
+    <DashboardPaper>
+      <DashboradItemHeader>{title}</DashboradItemHeader>
+      <StatsChildren>{children}</StatsChildren>
+    </DashboardPaper>
   );
 };
 

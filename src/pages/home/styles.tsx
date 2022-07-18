@@ -17,15 +17,30 @@ export const Header = styled(Typography)(({ theme }) => ({
 
 export const SpacedButton = styled(Button)(({ theme }) => ({
   margin: theme.spacing(2),
-  fontSize: "1.2rem",
+  fontSize: "0.9rem",
 }));
 
 export const Scrollable = styled(Box)(({ theme }) => ({
   maxHeight: "100vh",
   overflowY: "scroll",
+  overflowX: "hidden",
   background: "#FFF",
   width: "40%",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  [theme.breakpoints.down("sm")]: {
+    maxHeight: "unset",
+    overflowY: "unset",
+    width: "100%",
+  },
+}));
+
+export const Layout = styled(Box)(({ theme }) => ({
+  width: "100vw",
+  display: "flex",
+  flexDirection: "row",
+  [theme.breakpoints.down("sm")]: {
+    flexDirection: "column",
+  },
 }));

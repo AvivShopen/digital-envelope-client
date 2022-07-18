@@ -5,7 +5,7 @@ import { SectionContainer, SectionHeader } from "./styles";
 function GoogleSignInSection() {
   return (
     <SectionContainer>
-      <SectionHeader>Step1 : Sign in with your Google account</SectionHeader>
+      <SectionHeader>Sign in with your Google account</SectionHeader>
       <img src="../../../../assets/google-sign-in.PNG" />
     </SectionContainer>
   );
