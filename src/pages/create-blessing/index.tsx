@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 import { useBlessingStore } from "../../states/blessing-store";
 import { ICreateBlessing } from "../../types/blessing";
 import useApi from "../../hooks/useApi";
 import Swal from "sweetalert2";
 import { errorProps } from "../../utils/error-msg.props";
-import { Box, Input, InputLabel, TextField, Typography } from "@mui/material";
+import { Box, Button, Link, TextField, Typography } from "@mui/material";
 import Container from "../../components/CenteringContainer";
-import { StyledPaper, Submit } from "./styles";
+import CenteringContainer from "../../components/CenteringContainer";
 
 const SubmitBlessing: React.FC<any> = () => {
   const { setBlessing, blessing } = useBlessingStore();
   const eventId = parseInt(useParams().eventid!);
   const [eventName, setEventName] = useState<string>("");
-
+  const navigate = useNavigate();
   useEffect(() => {
     // fetchEvent();
     setEventName("Mock event");
@@ -36,43 +36,62 @@ const SubmitBlessing: React.FC<any> = () => {
     }
   };
   return (
-    <Container component="form" onSubmit={onSubmit}>
-      <StyledPaper>
-        <Typography variant="h3">{eventName}</Typography>
-        <Box>
-          <InputLabel htmlFor="createdBy">Guest name</InputLabel>
-          <Input
-            id="createdBy"
+    <CenteringContainer component="main">
+      <Container maxWidth="sm">
+        <form onSubmit={onSubmit}>
+          <Box sx={{ my: 3 }}>
+            <Typography color="textPrimary" variant="h4">
+              {"Welcome to " + eventName}
+            </Typography>
+            <Typography color="textSecondary" gutterBottom variant="body2">
+              Submit your blessing for the event
+            </Typography>
+          </Box>
+          <TextField
+            fullWidth
+            margin="normal"
             name="createdBy"
+            label="Your name"
             value={values.createdBy}
             onChange={onChange}
           />
-        </Box>
-        <Box>
-          <InputLabel htmlFor="amount">Payment amount</InputLabel>
-          <Input
-            id="amount"
+          <TextField
+            fullWidth
+            margin="normal"
             name="paymentAmount"
-            type="number"
+            label="Amount to pay (USD $)"
             value={values.paymentAmount}
             onChange={onChange}
           />
-        </Box>
-        <Box>
-          <InputLabel htmlFor="text">Your blessing</InputLabel>
-          <Input
-            id="text"
-            name="text"
+          <TextField
+            fullWidth
             multiline
+            margin="normal"
+            name="text"
+            label="Your blessing..."
             value={values.text}
             onChange={onChange}
           />
-        </Box>
-        <Submit type="submit" variant="contained">
-          Proceed to payment
-        </Submit>
-      </StyledPaper>
-    </Container>
+          <Box sx={{ py: 2 }}>
+            <Button fullWidth size="large" type="submit" variant="contained">
+              Proceed to payment
+            </Button>
+          </Box>
+          <Box>
+            <Typography color="textSecondary" variant="body2">
+              Having an event soon?{" "}
+              <Link
+                variant="subtitle2"
+                underline="hover"
+                onClick={() => navigate("/")}
+              >
+                Join us
+              </Link>
+            </Typography>
+          </Box>
+        </form>
+      </Container>
+    </CenteringContainer>
   );
 };
 

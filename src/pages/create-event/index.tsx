@@ -1,20 +1,33 @@
 import React from "react";
 import { useForm } from "../../hooks/useForm";
 import { useEventStore } from "../../states/event-store";
-import { ICreateEvent } from "../../types/event";
+import { EventTypes, ICreateEvent } from "../../types/event";
 import { useNavigate } from "react-router-dom";
 import useApi from "../../hooks/useApi";
 import Swal from "sweetalert2";
 import { errorProps } from "../../utils/error-msg.props";
-import { Box, Input, InputLabel, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Input,
+  InputLabel,
+  Radio,
+  RadioGroup,
+  TextField,
+  Typography,
+} from "@mui/material";
 import Container from "../../components/CenteringContainer";
-import { StyledPaper, Submit } from "./styles";
+import CenteringContainer from "../../components/CenteringContainer";
 
 const CreateEvent: React.FC<any> = () => {
   const { setEvent } = useEventStore();
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
+    console.log(values);
     Swal.fire({
       title: "Are you sure?",
       text: "Your new event will be created immediately",
@@ -42,36 +55,72 @@ const CreateEvent: React.FC<any> = () => {
   const { onChange, onSubmit, values } = useForm<ICreateEvent>(handleSubmit, {
     estimatedGuests: 0,
     name: "",
+    type: EventTypes.Other,
   });
 
   return (
-    <Container onSubmit={onSubmit} component="form">
-      <StyledPaper>
-        <Typography variant="h2">Welcome, $User </Typography>
-        <Box>
-          <InputLabel htmlFor="name">Event's name</InputLabel>
-          <Input
+    <CenteringContainer component="main">
+      <Container maxWidth="sm">
+        <form onSubmit={onSubmit}>
+          <Box sx={{ py: 3 }}>
+            <Typography color="textPrimary" variant="h4">
+              Welcome ,$User
+            </Typography>
+            <Typography color="textSecondary" gutterBottom variant="body2">
+              What are we celebrating?
+            </Typography>
+          </Box>
+          <TextField
+            fullWidth
+            margin="normal"
             name="name"
-            id="name"
+            label="Event's name"
             value={values.name}
             onChange={onChange}
           />
-        </Box>
-        <Box>
-          <InputLabel htmlFor="guests">Guests expected</InputLabel>
-          <Input
-            id="guests"
+          <TextField
+            fullWidth
+            margin="normal"
             name="estimatedGuests"
+            label="Guests exptected to attend"
             value={values.estimatedGuests}
-            type="number"
             onChange={onChange}
           />
-        </Box>
-        <Submit type="submit" variant="contained">
-          Create event
-        </Submit>
-      </StyledPaper>
-    </Container>
+          <TextField
+            fullWidth
+            margin="normal"
+            name="name"
+            label="Event's name"
+            value={values.name}
+            onChange={onChange}
+          />
+          <FormControl>
+            <FormLabel>Event type</FormLabel>
+            <RadioGroup
+              row
+              sx={{ pl: 2 }}
+              name="type"
+              value={values.type}
+              onChange={onChange}
+            >
+              {Object.keys(EventTypes).map((type) => (
+                <FormControlLabel
+                  key={type}
+                  value={type}
+                  control={<Radio />}
+                  label={type}
+                />
+              ))}
+            </RadioGroup>
+          </FormControl>
+          <Box sx={{ py: 2 }}>
+            <Button fullWidth size="large" type="submit" variant="contained">
+              Create event
+            </Button>
+          </Box>
+        </form>
+      </Container>
+    </CenteringContainer>
   );
 };
 

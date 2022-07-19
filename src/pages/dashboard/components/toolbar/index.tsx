@@ -12,7 +12,9 @@ const DashboardToolbar: React.FC<Props> = ({ eventName }) => {
   return (
     <Box>
       <PageContainer>
-        <Typography variant="h4">{eventName}</Typography>
+        <Typography variant="h4" sx={{ mb: { sm: 1, xs: 1 } }}>
+          {eventName}
+        </Typography>
         <Box sx={{ m: 1 }}>
           <Button startIcon={<DeleteIcon fontSize="small" />} sx={{ mr: 1 }}>
             Delete

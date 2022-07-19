@@ -53,7 +53,7 @@ const Dashboard = () => {
                     title="AVERAGE PER GUEST"
                     iconColor="#D14343"
                     icon={<InsertChartIcon />}
-                    mainStat={data.averagePerGuest + " $"}
+                    mainStat={data.averagePerGuest + "$"}
                   >
                     <StatBox>
                       <ArrowDownward color="error" />
@@ -92,7 +92,7 @@ const Dashboard = () => {
                     icon={<GroupIcon />}
                     mainStat={
                       (data.paidGuests.current / data.paidGuests.max) * 100 +
-                      " %"
+                      "%"
                     }
                   >
                     <Box sx={{ pt: 3 }}>
@@ -110,7 +110,7 @@ const Dashboard = () => {
                     title="MONEY COLLECTED"
                     iconColor="#14B8A6"
                     icon={<AttachMoneyIcon />}
-                    mainStat={data.totalAmount + " $"}
+                    mainStat={data.totalAmount + "$"}
                   ></DashboardCard>
                 </Grid>
               </Grid>
