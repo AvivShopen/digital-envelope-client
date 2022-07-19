@@ -29,8 +29,8 @@ export default function GenerateQr() {
   return (
     <CenteringContainer>
       <StyledPaper>
-        <Typography variant="h2">
-          {eventName && "Welcome to " + eventName}
+        <Typography variant="h2" textAlign="center">
+          {eventName}
         </Typography>
         <img src={QR} alt="QR_CODE" title="QR" />
         <Typography variant="body1">Scan the QR code to participate</Typography>

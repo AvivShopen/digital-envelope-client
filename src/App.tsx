@@ -7,14 +7,12 @@ import CreateBlessing from "./pages/create-blessing";
 import Dashboard from "./pages/dashboard";
 import CreateEvent from "./pages/create-event";
 import HomePage from "./pages/home";
-import Header from "./components/header";
 import { ThemeProvider } from "@mui/material";
 import theme from "./theme";
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <Header />
       <Routes>
         {/* for guests */}
         <Route path="/" element={<HomePage />} />

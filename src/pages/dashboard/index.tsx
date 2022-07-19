@@ -13,6 +13,7 @@ import { Container } from "@mui/system";
 import { ArrowDownward } from "@mui/icons-material";
 import EventNoteIcon from "@mui/icons-material/EventNote";
 import DashboardToolbar from "./components/toolbar";
+import SideBar from "../../components/header";
 
 const Dashboard = () => {
   const { eventId } = useEventStore();
@@ -22,7 +23,6 @@ const Dashboard = () => {
   const fetchData = async () => {
     const { data } = await useApi.dashboard().getData(8);
     setData((prev) => data);
-    console.log(data);
   };
 
   useEffect(() => {
@@ -44,6 +44,7 @@ const Dashboard = () => {
     <>
       {data ? (
         <>
+          <SideBar />
           <DashboardLayoutRoot>
             <DashboardToolbar eventName={eventName} />
             <Container maxWidth={false}>

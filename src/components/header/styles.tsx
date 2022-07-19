@@ -1,30 +1,23 @@
-import { AppBar, Avatar, Box, IconButton, Typography } from "@mui/material";
-import { styled, experimental_sx as sx } from "@mui/system";
-import theme from "../../theme";
+import { Box, Divider, styled } from "@mui/material";
 
-export const RowAppBar = styled(AppBar)(({ theme }) => ({
-  flexGrow: 1,
-  width: "100%",
-  height: "5vh",
+export const RowBar = styled(Box)(({ theme }) => ({
   display: "flex",
-  flexDirection: "row",
+  flexDirection: "column",
+  height: "100%",
+}));
+
+export const AccountSection = styled(Box)(({ theme }) => ({
   alignItems: "center",
-  marginBotton: theme.spacing(2),
-}));
-
-export const LogoHeader = styled(Typography)(({ theme }) => ({
-  letterSpacing: ".2rem",
-  marginLeft: theme.spacing(1),
-  marginRight: theme.spacing(1),
-  textDecoration: "none",
+  backgroundColor: "rgba(255, 255, 255, 0.04)",
   cursor: "pointer",
+  display: "flex",
+  justifyContent: "space-between",
+  borderRadius: 1,
+  px: 3,
+  py: "11px",
 }));
 
-export const BoxContainer = styled(Box)(({ theme }) => ({
-  flexGrow: 1,
-}));
-
-export const StyledAvatar = styled(Avatar)(({ theme }) => ({
-  alignSelf: "right",
-  marginRight: theme.spacing(1),
+export const NavDivider = styled(Divider)(({ theme }) => ({
+  borderColor: "#2D3748",
+  my: 2,
 }));

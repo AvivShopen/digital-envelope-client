@@ -62,6 +62,7 @@ const SubmitBlessing: React.FC<any> = () => {
             label="Amount to pay (USD $)"
             value={values.paymentAmount}
             onChange={onChange}
+            inputProps={{ inputMode: "numeric" }}
           />
           <TextField
             fullWidth
