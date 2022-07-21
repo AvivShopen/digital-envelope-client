@@ -9,3 +9,9 @@ export const StyledPaper = styled(Paper)(({ theme }) => ({
     width: "90vw",
   },
 }));
+
+export const StyledBox = styled("div")(({ theme }) => ({
+  paddingTop: 5,
+  paddingLeft: 1,
+  flexGrow: 1,
+}));

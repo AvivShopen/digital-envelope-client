@@ -1,11 +1,8 @@
-import { styled, Typography } from "@mui/material";
+import { Grid, GridProps, styled, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 
 export const DashboardLayoutRoot = styled("div")(({ theme }) => ({
   paddingTop: 64,
-  [theme.breakpoints.up("lg")]: {
-    paddingLeft: 280,
-  },
 }));
 
 export const StatBox = styled(Box)(({ theme }) => ({
@@ -13,3 +10,7 @@ export const StatBox = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
 }));
+
+export const StyledGrid = styled((props: GridProps) => (
+  <Grid item lg={4} sm={6} xl={3} xs={12} {...props} />
+))(({ theme }) => ({}));

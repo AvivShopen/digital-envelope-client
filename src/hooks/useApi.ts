@@ -23,6 +23,9 @@ const useApi = {
       create(event: ICreateEvent): Promise<AxiosResponse<Event>> {
         return Axios.post(`${serverUrl}/event`, event);
       },
+      delete(eventId: number): Promise<AxiosResponse<any>> {
+        return Axios.delete(`${serverUrl}/event/${eventId}`);
+      },
     };
   },
   qr() {

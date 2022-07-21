@@ -22,7 +22,12 @@ const DashboardCard: React.FC<DashboardItemProps> = ({
       <CardContent>
         <Grid container spacing={3} sx={{ justifyContent: "space-between" }}>
           <Grid item>
-            <Typography color="textSecondary" gutterBottom variant="overline">
+            <Typography
+              color="textSecondary"
+              gutterBottom
+              variant="overline"
+              textTransform={"uppercase"}
+            >
               {title}
             </Typography>
             <Typography color="textPrimary" variant="h4">
@@ -30,7 +35,7 @@ const DashboardCard: React.FC<DashboardItemProps> = ({
             </Typography>
           </Grid>
           <Grid item>
-            <DashboardItemIcon iconColor={iconColor}>{icon}</DashboardItemIcon>
+            <DashboardItemIcon color={iconColor}>{icon}</DashboardItemIcon>
           </Grid>
         </Grid>
         {children && <>{children}</>}

@@ -1,4 +1,4 @@
-import { Button, Paper, styled, Typography } from "@mui/material";
+import { Grid, GridProps, Paper, styled } from "@mui/material";
 
 export const StyledPaper = styled(Paper)(({ theme }) => ({
   width: "90vw",
@@ -12,7 +12,6 @@ export const StyledPaper = styled(Paper)(({ theme }) => ({
   },
 }));
 
-export const Header = styled(Typography)(({ theme }) => ({
-  marginBottom: theme.spacing(2),
-  marginTop: theme.spacing(2),
-}));
+export const StyledGrid = styled((props: GridProps) => (
+  <Grid item lg={4} sm={6} xl={3} xs={12} {...props} />
+))(({ theme }) => ({}));

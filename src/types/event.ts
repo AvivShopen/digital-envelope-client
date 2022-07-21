@@ -17,6 +17,5 @@ export enum EventTypes {
 export interface Event extends ICreateEvent {
   id: number;
   createdAt: Date;
-  type: EventTypes;
   lastUpdatedAt: Date;
 }

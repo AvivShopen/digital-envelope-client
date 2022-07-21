@@ -1,8 +1,7 @@
 import {
   AddBox,
-  AddOutlined,
   Celebration,
-  Edit,
+  Settings,
   Leaderboard,
   List,
   Menu,
@@ -12,7 +11,6 @@ import {
   Avatar,
   Card,
   Drawer,
-  Paper,
   Stack,
   Theme,
   Typography,
@@ -21,7 +19,12 @@ import {
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 import NavItem, { NavItemProps } from "./components/nav-item";
-import { AccountSection, NavDivider, RowBar } from "./styles";
+import {
+  AccountSection,
+  NavDivider,
+  RowBar,
+  SidebarPlaceholder,
+} from "./styles";
 
 const links: NavItemProps[] = [
   {
@@ -46,13 +49,13 @@ const links: NavItemProps[] = [
   },
   {
     link: "/event/edit",
-    icon: <Edit />,
-    title: "Edit event",
+    icon: <Settings />,
+    title: "Event Settings",
   },
   {
     link: "/events",
     icon: <Celebration />,
-    title: "My events",
+    title: "My Events",
   },
 ];
 
@@ -78,11 +81,20 @@ const SideBar = () => {
     </RowBar>
   );
 
-  if (lgOrXL) {
-    return (
+  return (
+    <>
+      {!lgOrXL && !isOpen && (
+        <Box sx={{ display: "block", position: "fixed" }}>
+          <Card>
+            <Menu onClick={() => setIsOpen(!isOpen)} sx={{ p: 1 }} />
+          </Card>
+        </Box>
+      )}
+      {lgOrXL && <SidebarPlaceholder />}
       <Drawer
         anchor="left"
-        open
+        open={lgOrXL || isOpen}
+        onClose={() => setIsOpen(false)}
         PaperProps={{
           sx: {
             backgroundColor: "neutral.900",
@@ -90,34 +102,12 @@ const SideBar = () => {
             width: 280,
           },
         }}
-        variant="permanent"
+        sx={{ zIndex: (theme) => theme.zIndex.appBar + 100 }}
+        variant={lgOrXL ? "permanent" : "temporary"}
       >
         {items}
       </Drawer>
-    );
-  } else if (!isOpen)
-    return (
-      <Card>
-        <Menu onClick={() => setIsOpen(!isOpen)} sx={{ p: 1 }} />
-      </Card>
-    );
-  return (
-    <Drawer
-      anchor="left"
-      open={isOpen}
-      onClose={() => setIsOpen(false)}
-      PaperProps={{
-        sx: {
-          backgroundColor: "neutral.900",
-          color: "#FFFFFF",
-          width: 280,
-        },
-      }}
-      sx={{ zIndex: (theme) => theme.zIndex.appBar + 100 }}
-      variant="temporary"
-    >
-      {items}
-    </Drawer>
+    </>
   );
 };
 
