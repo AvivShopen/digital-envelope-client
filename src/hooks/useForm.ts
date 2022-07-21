@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-export function useForm<T>(callback: () => void, initialState: T) {
+export const useForm = <T>(callback: () => void, initialState: T) => {
   const [values, setValues] = useState(initialState);
 
-  const onChange = (e: any,) => {
+  const onChange = (e: any) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
@@ -11,5 +11,5 @@ export function useForm<T>(callback: () => void, initialState: T) {
     e.preventDefault();
     callback();
   };
-  return { onChange, onSubmit, values, };
-}
+  return { onChange, onSubmit, values };
+};

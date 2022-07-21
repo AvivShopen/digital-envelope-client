@@ -2,11 +2,21 @@
 export interface ICreateEvent {
   name: string;
   estimatedGuests: number;
+  type: EventTypes;
+}
+
+//All possible event types
+export enum EventTypes {
+  Wedding = "Wedding",
+  Birthday = "Birthday",
+  Party = "Party",
+  Other = "Other",
 }
 
 //The event entity from the server
 export interface Event extends ICreateEvent {
   id: number;
   createdAt: Date;
+  type: EventTypes;
   lastUpdatedAt: Date;
 }
