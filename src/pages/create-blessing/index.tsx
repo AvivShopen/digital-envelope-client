@@ -15,6 +15,7 @@ const SubmitBlessing: React.FC<any> = () => {
   const eventId = parseInt(useParams().eventid!);
   const [eventName, setEventName] = useState<string>("");
   const navigate = useNavigate();
+
   useEffect(() => {
     // fetchEvent();
     setEventName("Mock event");

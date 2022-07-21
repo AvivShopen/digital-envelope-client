@@ -1,13 +1,26 @@
 import create from "zustand";
+import { Event, EventTypes } from "../types/event";
 
 interface EventState {
-  eventId: number;
-  setEvent: (id: number) => void;
+  event: Event;
+  setEvent: (event: Event) => void;
 }
 
+const initDate = new Date();
+
 const useStore = create<EventState>((set) => ({
-  eventId: 0,
-  setEvent: (id) => set((state) => ({ eventId: id })),
+  //Define initail event values
+  event: {
+    id: 0,
+    createdAt: initDate,
+    estimatedGuests: 0,
+    lastUpdatedAt: initDate,
+    name: "",
+    type: EventTypes.Other,
+  },
+
+  //Set the global event
+  setEvent: (event) => set((state) => ({ event })),
 }));
 
 export { useStore as useEventStore };

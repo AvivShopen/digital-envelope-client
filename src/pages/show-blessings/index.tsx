@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import useApi from "../../../../hooks/useApi";
+import useApi from "../../hooks/useApi";
 import BlessingItem from "./components/blessing-item";
 import Toolbar from "./components/toolbar";
-import { useEventStore } from "../../../../states/event-store";
-import { Blessing } from "../../../../types/blessing";
-import { SortOptions } from "../../../../types/sort-options";
+import { useEventStore } from "../../states/event-store";
+import { Blessing } from "../../types/blessing";
+import { SortOptions } from "../../types/sort-options";
 import {
   compareByAmount,
   compareByDate,
-} from "../../../../utils/compare-blessings.util";
+} from "../../utils/compare-blessings.util";
+import SideBar from "../../components/header";
 
 const ShowBlessings: React.FC<any> = () => {
   const { eventId } = useEventStore();
@@ -21,7 +22,7 @@ const ShowBlessings: React.FC<any> = () => {
 
   const fetchBlessings = async () => {
     try {
-      const { data } = await useApi.blessing().getByEvent(eventId);
+      const { data } = await useApi.blessing().getByEvent(8);
       setBlessings(data);
       setFiltered(data);
     } catch (err) {
@@ -55,6 +56,7 @@ const ShowBlessings: React.FC<any> = () => {
 
   return (
     <>
+      <SideBar />
       <h2>All Blessings</h2>
       <Toolbar
         handleSearch={handleSearch}

@@ -1,5 +1,11 @@
 import { Box, Divider, styled } from "@mui/material";
 
+export const SidebarPlaceholder = styled(Box)(({ theme }) => ({
+  width: 300,
+  height: "100%",
+  marginRight: 15,
+}));
+
 export const RowBar = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",

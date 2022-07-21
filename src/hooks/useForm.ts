@@ -11,5 +11,6 @@ export const useForm = <T>(callback: () => void, initialState: T) => {
     e.preventDefault();
     callback();
   };
+
   return { onChange, onSubmit, values };
 };

@@ -3,41 +3,39 @@ import React, { useEffect, useState } from "react";
 import useApi from "../../hooks/useApi";
 import { useEventStore } from "../../states/event-store";
 import IDashboard from "../../types/dashboard";
-import ShowBlessings from "./components/show-blessings";
 import DashboardCard from "./components/dashboard-item";
-import { DashboardLayoutRoot, StatBox } from "./styles";
+import { DashboardLayoutRoot, StatBox, StyledGrid } from "./styles";
 import InsertChartIcon from "@mui/icons-material/InsertChart";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import GroupIcon from "@mui/icons-material/Group";
 import { Container } from "@mui/system";
 import { ArrowDownward } from "@mui/icons-material";
 import EventNoteIcon from "@mui/icons-material/EventNote";
-import DashboardToolbar from "./components/toolbar";
+import DashboardToolbar from "../../components/toolbar";
 import SideBar from "../../components/header";
 
 const Dashboard = () => {
-  const { eventId } = useEventStore();
+  const { event } = useEventStore();
   const [data, setData] = useState<IDashboard>();
-  const [eventName, setEventName] = useState<string>("");
 
   const fetchData = async () => {
+    // const { data } = await useApi.dashboard().getData(event.id);
     const { data } = await useApi.dashboard().getData(8);
     setData((prev) => data);
   };
 
   useEffect(() => {
-    // fetchData();
-    const mockData: IDashboard = {
-      averagePerGuest: 120,
-      paidGuests: {
-        current: 50,
-        max: 100,
-      },
-      totalAmount: 1500,
-    };
+    fetchData();
+    // const mockData: IDashboard = {
+    //   averagePerGuest: 120,
+    //   paidGuests: {
+    //     current: 50,
+    //     max: 100,
+    //   },
+    //   totalAmount: 1500,
+    // };
 
-    setData((prev) => mockData);
-    setEventName((prev) => "Mock event");
+    // setData((prev) => mockData);
   }, []);
 
   return (
@@ -46,12 +44,12 @@ const Dashboard = () => {
         <>
           <SideBar />
           <DashboardLayoutRoot>
-            <DashboardToolbar eventName={eventName} />
+            <DashboardToolbar />
             <Container maxWidth={false}>
               <Grid container spacing={3}>
-                <Grid item lg={3} sm={6} xl={3} xs={12}>
+                <StyledGrid>
                   <DashboardCard
-                    title="AVERAGE PER GUEST"
+                    title="Average Per Guest"
                     iconColor="#D14343"
                     icon={<InsertChartIcon />}
                     mainStat={data.averagePerGuest + "$"}
@@ -72,10 +70,10 @@ const Dashboard = () => {
                       </Typography>
                     </StatBox>
                   </DashboardCard>
-                </Grid>
-                <Grid item lg={3} sm={6} xl={3} xs={12}>
+                </StyledGrid>
+                <StyledGrid>
                   <DashboardCard
-                    title="EVENT CLOSES AT"
+                    title="Event Closes At"
                     iconColor="#5048E5"
                     icon={<EventNoteIcon />}
                     mainStat={"17/02/2023"}
@@ -84,36 +82,37 @@ const Dashboard = () => {
                       15 days left
                     </Typography>
                   </DashboardCard>
-                </Grid>
+                </StyledGrid>
 
-                <Grid item lg={3} sm={6} xl={3} xs={12}>
+                <StyledGrid>
                   <DashboardCard
-                    title="GUESTS PAID"
+                    title="Guests Paid"
                     iconColor="#FFB020"
                     icon={<GroupIcon />}
                     mainStat={
-                      (data.paidGuests.current / data.paidGuests.max) * 100 +
-                      "%"
+                      Math.floor(
+                        (data.paidGuests.current / data.paidGuests.max) * 100
+                      ) + "%"
                     }
                   >
                     <Box sx={{ pt: 3 }}>
                       <LinearProgress
-                        value={
+                        value={Math.floor(
                           (data.paidGuests.current / data.paidGuests.max) * 100
-                        }
+                        )}
                         variant="determinate"
                       />
                     </Box>
                   </DashboardCard>
-                </Grid>
-                <Grid item lg={3} sm={6} xl={3} xs={12}>
+                </StyledGrid>
+                <StyledGrid>
                   <DashboardCard
-                    title="MONEY COLLECTED"
+                    title="Money Collected"
                     iconColor="#14B8A6"
                     icon={<AttachMoneyIcon />}
                     mainStat={data.totalAmount + "$"}
                   ></DashboardCard>
-                </Grid>
+                </StyledGrid>
               </Grid>
             </Container>
           </DashboardLayoutRoot>
