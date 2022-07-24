@@ -5,7 +5,7 @@ import { useBlessingStore } from "../../states/blessing-store";
 import { ICreateBlessing } from "../../types/blessing";
 import useApi from "../../hooks/useApi";
 import Swal from "sweetalert2";
-import { errorProps } from "../../utils/error-msg.props";
+import { errorProps } from "../../utils/error-msg-props.util";
 import { Box, Button, Link, TextField, Typography } from "@mui/material";
 import Container from "../../components/CenteringContainer";
 import CenteringContainer from "../../components/CenteringContainer";

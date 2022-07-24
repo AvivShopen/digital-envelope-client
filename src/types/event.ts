@@ -18,4 +18,5 @@ export interface Event extends ICreateEvent {
   id: number;
   createdAt: Date;
   lastUpdatedAt: Date;
+  closed: boolean
 }

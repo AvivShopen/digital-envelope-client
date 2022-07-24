@@ -1,8 +1,9 @@
-import { Grid, GridProps, styled, Typography } from "@mui/material";
+import { Grid, GridProps, styled } from "@mui/material";
 import { Box } from "@mui/system";
 
 export const DashboardLayoutRoot = styled("div")(({ theme }) => ({
   paddingTop: 64,
+  flexGrow: 1,
 }));
 
 export const StatBox = styled(Box)(({ theme }) => ({

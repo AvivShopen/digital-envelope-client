@@ -1,37 +1,60 @@
+import { Search } from "@mui/icons-material";
+import {
+  Card,
+  Box,
+  Input,
+  InputAdornment,
+  TextField,
+  OutlinedInput,
+  Typography,
+  Select,
+  MenuItem,
+} from "@mui/material";
 import { useState } from "react";
-import SideBar from "../../../../components/header";
+import { ToolbarContainer } from "../../../../components/toolbar/styles";
 import { SortOptions } from "../../../../types/sort-options";
 
 interface ToolbarProps {
   handleSearch: (e: any) => void;
-  options: typeof SortOptions;
   handleSort: (e: any) => void;
+  selected: string;
 }
 
-const Toolbar = ({ options, handleSearch, handleSort }: ToolbarProps) => {
-  const [selected, setSelected] = useState("");
+const BlessingsToolbar = ({
+  handleSearch,
+  handleSort,
+  selected,
+}: ToolbarProps) => {
   return (
-    <>
-      <div>
-        <input placeholder="Search..." onChange={(e) => handleSearch(e)} />
-        <div>
-          Sort by &nbsp;
-          <select
-            value={selected}
-            onChange={(e) => {
-              handleSort(e);
-              setSelected(e.target.value);
-            }}
-          >
-            {(Object.keys(options) as Array<SortOptions>).map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
+    <Card>
+      <ToolbarContainer>
+        <Box sx={{ p: 1, flexGrow: 2 }}>
+          <OutlinedInput
+            fullWidth
+            placeholder="Search..."
+            onChange={handleSearch}
+            startAdornment={
+              <InputAdornment position="start">
+                <Search />
+              </InputAdornment>
+            }
+          />
+        </Box>
+        <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}>
+          <Typography>Sort by &nbsp;</Typography>
+          <Select onChange={handleSort} value={selected}>
+            {Object.keys(SortOptions).map((option) => (
+              <MenuItem key={option} value={option}>
+                {
+                  //@ts-ignore
+                  SortOptions[option]
+                }
+              </MenuItem>
             ))}
-          </select>
-        </div>
-      </div>
-    </>
+          </Select>
+        </Box>
+      </ToolbarContainer>
+    </Card>
   );
 };
-export default Toolbar;
+export default BlessingsToolbar;

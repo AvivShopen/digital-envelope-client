@@ -23,9 +23,16 @@ const useApi = {
       create(event: ICreateEvent): Promise<AxiosResponse<Event>> {
         return Axios.post(`${serverUrl}/event`, event);
       },
+      update(event: Event): Promise<AxiosResponse<Event>> {
+        const { id, ...attrs } = { ...event };
+        return Axios.put(`${serverUrl}/event/${id}`, attrs);
+      },
       delete(eventId: number): Promise<AxiosResponse<any>> {
         return Axios.delete(`${serverUrl}/event/${eventId}`);
       },
+      reverseOpeningState(eventId: number, state: boolean): Promise<AxiosResponse<Event>> {
+        return Axios.put(`${serverUrl}/event/${eventId}`, { closed: state });
+      }
     };
   },
   qr() {

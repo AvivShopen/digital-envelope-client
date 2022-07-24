@@ -5,7 +5,7 @@ import { EventTypes, ICreateEvent } from "../../types/event";
 import { useNavigate } from "react-router-dom";
 import useApi from "../../hooks/useApi";
 import Swal from "sweetalert2";
-import { errorProps } from "../../utils/error-msg.props";
+import { errorProps } from "../../utils/error-msg-props.util";
 import {
   Box,
   Button,
@@ -38,11 +38,10 @@ const CreateEvent: React.FC<any> = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          //Call api to create a new event and set its id globally
+          //Call api to create a new event and set its state globally
           const { data } = await useApi.events().create(values);
-          setEvent(data.id);
-
-          navigate("/qr");
+          setEvent(data);
+          navigate("/dashboard");
         } catch (err) {
           Swal.fire({ icon: "error", ...errorProps });
         }

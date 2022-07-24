@@ -1,23 +1,10 @@
-import { Paper, styled, Typography } from "@mui/material";
+import { Stack, StackProps, styled } from "@mui/material";
 
-export const Header = styled(Typography)(({ theme }) => ({
-  fontSize: "3rem",
-  marginBottom: theme.spacing(2),
-  marginTop: theme.spacing(2),
-  textAlign: "center",
-}));
-
-export const Footer = styled(Typography)(({ theme }) => ({
-  marginTop: theme.spacing(2),
-  textAlign: "center",
-}));
-
-export const StyledPaper = styled(Paper)(({ theme }) => ({
-  width: "70vw",
-  minHeight: "70vh",
-  display: "grid",
-  placeItems: "center",
-  [theme.breakpoints.down("sm")]: {
-    width: "90vw",
-  },
-}));
+export const BlessingContainer = styled((props: StackProps) => (
+  <Stack
+    direction="column"
+    spacing={4}
+    sx={{ flexGrow: 1, mr: { lg: 5, md: 3, sm: 1 } }}
+    {...props}
+  />
+))(({ theme }) => ({}));

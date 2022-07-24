@@ -1,4 +1,5 @@
 export enum SortOptions {
-  Date = "Date",
+  DateASC = "Oldest to newest",
+  DateDESC = "Newest to oldest",
   Amount = "Amount",
 }

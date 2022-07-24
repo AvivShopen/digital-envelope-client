@@ -22,14 +22,15 @@ import { Event, EventTypes } from "../../types/event";
 import { ButtonContainer, StyledGridItem } from "./styles";
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
-import { errorProps } from "../../utils/error-msg.props";
+import { errorProps } from "../../utils/error-msg-props.util";
 
 const EditEvent = () => {
-  const { event } = useEventStore();
+  const { event, setEvent } = useEventStore();
 
   const handleSubmit = async () => {
     try {
-      await useApi.events().create(values!);
+      const { data } = await useApi.events().update(values!);
+      setEvent(data);
     } catch (err) {
       Swal.fire({
         icon: "error",
@@ -68,7 +69,7 @@ const EditEvent = () => {
                   <TextField
                     fullWidth
                     label="Guests"
-                    name="guests"
+                    name="estimatedGuests"
                     required
                     variant="outlined"
                     onChange={onChange}
@@ -100,7 +101,7 @@ const EditEvent = () => {
             </CardContent>
             <Divider />
             <ButtonContainer>
-              <Button color="primary" variant="contained">
+              <Button color="primary" type="submit" variant="contained">
                 Save changes
               </Button>
             </ButtonContainer>
