@@ -5,7 +5,7 @@ import Toolbar from "./components/toolbar";
 import { useEventStore } from "../../states/event-store";
 import { Blessing } from "../../types/blessing";
 import { SortOptions } from "../../types/sort-options";
-import SideBar from "../../components/header";
+import SideBar from "../../components/sidebar";
 import { BlessingContainer } from "./styles";
 import DashboardToolbar from "../../components/toolbar";
 import { Card } from "@mui/material";

@@ -13,7 +13,7 @@ import {
   FormControlLabel,
   Stack,
 } from "@mui/material";
-import SideBar from "../../components/header";
+import SideBar from "../../components/sidebar";
 import DashboardToolbar from "../../components/toolbar";
 import useApi from "../../hooks/useApi";
 import { useForm } from "../../hooks/useForm";
@@ -22,7 +22,7 @@ import { Event, EventTypes } from "../../types/event";
 import { ButtonContainer, StyledGridItem } from "./styles";
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
-import { errorProps } from "../../utils/error-msg-props.util";
+import { GeneralErrorMessage } from "../../utils/error-msg.util";
 
 const EditEvent = () => {
   const { event, setEvent } = useEventStore();
@@ -32,10 +32,7 @@ const EditEvent = () => {
       const { data } = await useApi.events().update(values!);
       setEvent(data);
     } catch (err) {
-      Swal.fire({
-        icon: "error",
-        ...errorProps,
-      });
+      GeneralErrorMessage();
     }
   };
   const { onChange, onSubmit, values } = useForm<Event>(handleSubmit, event!);

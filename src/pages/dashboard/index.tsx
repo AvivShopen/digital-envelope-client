@@ -12,7 +12,7 @@ import { Container } from "@mui/system";
 import { ArrowDownward } from "@mui/icons-material";
 import EventNoteIcon from "@mui/icons-material/EventNote";
 import DashboardToolbar from "../../components/toolbar";
-import SideBar from "../../components/header";
+import SideBar from "../../components/sidebar";
 
 const Dashboard = () => {
   const { event } = useEventStore();

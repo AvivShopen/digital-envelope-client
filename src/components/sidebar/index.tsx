@@ -6,12 +6,13 @@ import {
   List,
   Menu,
   QrCode,
+  Logout,
+  LogoutRounded,
 } from "@mui/icons-material";
 import {
   Avatar,
   Card,
   Drawer,
-  Stack,
   Theme,
   Typography,
   useMediaQuery,
@@ -68,10 +69,19 @@ const SideBar = () => {
 
   const items = (
     <RowBar>
-      <Stack direction="row" sx={{ p: 2 }}>
+      <Box sx={{ p: 2 }}>
         <Typography variant="h5">Digital Envelope</Typography>
-      </Stack>
-
+      </Box>
+      <Box sx={{ p: 2 }}>
+        <AccountSection>
+          <Avatar
+            alt="Omer Gal"
+            src="https://lh3.googleusercontent.com/a-/AFdZucpOjKoBp_dBEwTNwWq0fVcjTxmgFnkmVbheH4DECQ=s96-c"
+            sx={{ width: 32, height: 32, mr: 2 }}
+          />
+          <Typography variant="subtitle1">Omer Gal</Typography>
+        </AccountSection>
+      </Box>
       <NavDivider />
       <Box sx={{ flexGrow: 1 }}>
         {links.map((item) => (

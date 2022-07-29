@@ -4,11 +4,11 @@ import React from "react";
 import { ToolbarContainer } from "./styles";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useEventStore } from "../../states/event-store";
-import Swal from "sweetalert2";
-import { errorProps } from "../../utils/error-msg-props.util";
 import useApi from "../../hooks/useApi";
 import { useNavigate } from "react-router-dom";
 import initEvent from "../../utils/init-event-props.util";
+import { GeneralErrorMessage } from "../../utils/error-msg.util";
+import Swal from "sweetalert2";
 
 const DashboardToolbar: React.FC<any> = () => {
   const { event, setEvent } = useEventStore();
@@ -38,10 +38,7 @@ const DashboardToolbar: React.FC<any> = () => {
       setEvent(initEvent);
       navigate("/events/");
     } catch (err) {
-      Swal.fire({
-        icon: "error",
-        ...errorProps,
-      });
+      GeneralErrorMessage();
     }
   };
 
@@ -53,10 +50,7 @@ const DashboardToolbar: React.FC<any> = () => {
         .reverseOpeningState(event.id, event.closed);
       setEvent(data);
     } catch (err) {
-      Swal.fire({
-        icon: "error",
-        ...errorProps,
-      });
+      GeneralErrorMessage();
     }
   };
 

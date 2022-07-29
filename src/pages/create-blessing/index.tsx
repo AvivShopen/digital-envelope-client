@@ -4,11 +4,10 @@ import { useForm } from "../../hooks/useForm";
 import { useBlessingStore } from "../../states/blessing-store";
 import { ICreateBlessing } from "../../types/blessing";
 import useApi from "../../hooks/useApi";
-import Swal from "sweetalert2";
-import { errorProps } from "../../utils/error-msg-props.util";
 import { Box, Button, Link, TextField, Typography } from "@mui/material";
 import Container from "../../components/CenteringContainer";
 import CenteringContainer from "../../components/CenteringContainer";
+import { GeneralErrorMessage } from "../../utils/error-msg.util";
 
 const SubmitBlessing: React.FC<any> = () => {
   const { setBlessing, blessing } = useBlessingStore();
@@ -33,7 +32,7 @@ const SubmitBlessing: React.FC<any> = () => {
       const { data } = await useApi.events().getById(eventId);
       setEventName((name) => data.name);
     } catch (err) {
-      Swal.fire({ icon: "error", ...errorProps });
+      GeneralErrorMessage();
     }
   };
   return (

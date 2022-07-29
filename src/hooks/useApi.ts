@@ -1,8 +1,12 @@
+import axios from "axios";
 import Axios, { AxiosResponse } from "axios";
 import { Blessing } from "../types/blessing";
 import { Event, ICreateEvent } from "../types/event";
+import { User } from "../types/user";
 
-const serverUrl = "http://localhost:3001";
+export const serverUrl = "http://localhost:3001";
+
+axios.defaults.withCredentials = true;
 
 const useApi = {
   blessing() {
@@ -17,8 +21,8 @@ const useApi = {
       getById(id: number): Promise<AxiosResponse<Event>> {
         return Axios.get(`${serverUrl}/event/${id}`);
       },
-      getByUser(userId: number): Promise<AxiosResponse<Event[]>> {
-        return Axios.get(`${serverUrl}/event/${userId}`);
+      getByUser(): Promise<AxiosResponse<Event[]>> {
+        return Axios.get(`${serverUrl}/event/user`);
       },
       create(event: ICreateEvent): Promise<AxiosResponse<Event>> {
         return Axios.post(`${serverUrl}/event`, event);
@@ -41,6 +45,16 @@ const useApi = {
         return `https://api.qrserver.com/v1/create-qr-code/?data=${redirectUrl}&amp;size=80x80`;
       },
     };
+  },
+  auth() {
+    return {
+      getUser(): Promise<AxiosResponse<User>> {
+        return Axios.get(`${serverUrl}/auth/currentuser`);
+      },
+      login(): Promise<AxiosResponse<any>> {
+        return Axios.get(`${serverUrl}/auth/google`);
+      }
+    }
   },
   dashboard() {
     return {

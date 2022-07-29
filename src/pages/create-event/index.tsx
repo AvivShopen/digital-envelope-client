@@ -5,7 +5,6 @@ import { EventTypes, ICreateEvent } from "../../types/event";
 import { useNavigate } from "react-router-dom";
 import useApi from "../../hooks/useApi";
 import Swal from "sweetalert2";
-import { errorProps } from "../../utils/error-msg-props.util";
 import {
   Box,
   Button,
@@ -19,7 +18,8 @@ import {
 } from "@mui/material";
 import Container from "../../components/CenteringContainer";
 import CenteringContainer from "../../components/CenteringContainer";
-import SideBar from "../../components/header";
+import SideBar from "../../components/sidebar";
+import { GeneralErrorMessage } from "../../utils/error-msg.util";
 
 const CreateEvent: React.FC<any> = () => {
   const { setEvent } = useEventStore();
@@ -43,7 +43,7 @@ const CreateEvent: React.FC<any> = () => {
           setEvent(data);
           navigate("/dashboard");
         } catch (err) {
-          Swal.fire({ icon: "error", ...errorProps });
+          GeneralErrorMessage();
         }
       }
     });
