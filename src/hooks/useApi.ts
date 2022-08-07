@@ -34,9 +34,12 @@ const useApi = {
       delete(eventId: number): Promise<AxiosResponse<any>> {
         return Axios.delete(`${serverUrl}/event/${eventId}`);
       },
-      reverseOpeningState(eventId: number, state: boolean): Promise<AxiosResponse<Event>> {
+      reverseOpeningState(
+        eventId: number,
+        state: boolean
+      ): Promise<AxiosResponse<Event>> {
         return Axios.put(`${serverUrl}/event/${eventId}`, { closed: state });
-      }
+      },
     };
   },
   qr() {
@@ -51,10 +54,13 @@ const useApi = {
       getUser(): Promise<AxiosResponse<User>> {
         return Axios.get(`${serverUrl}/auth/currentuser`);
       },
-      login(): Promise<AxiosResponse<any>> {
-        return Axios.get(`${serverUrl}/auth/google`);
+       login(): void {
+        window.location.href = serverUrl + "/auth/google";
+      },
+      logout() {
+        return Axios.post(`${serverUrl}/auth/logout`);
       }
-    }
+    };
   },
   dashboard() {
     return {

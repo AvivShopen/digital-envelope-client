@@ -4,21 +4,24 @@ import {
   Settings,
   Leaderboard,
   List,
-  Menu,
+  Menu as MenuIcon,
   QrCode,
-  Logout,
-  LogoutRounded,
 } from "@mui/icons-material";
 import {
   Avatar,
   Card,
   Drawer,
+  Menu,
+  MenuItem,
   Theme,
   Typography,
   useMediaQuery,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useApi from "../../hooks/useApi";
+import { useUserStore } from "../../states/user-store";
 import NavItem, { NavItemProps } from "./components/nav-item";
 import {
   AccountSection,
@@ -32,31 +35,37 @@ const links: NavItemProps[] = [
     link: "/event/create",
     icon: <AddBox />,
     title: "Create Event",
+    isPublic: true,
   },
   {
     link: "/dashboard",
     icon: <Leaderboard />,
     title: "Overview",
+    isPublic: false,
   },
   {
     link: "/blessings",
     icon: <List />,
     title: "Blessings",
+    isPublic: false,
   },
   {
     link: "/qr",
     icon: <QrCode />,
     title: "Generate Qr",
+    isPublic: false,
   },
   {
     link: "/event/edit",
     icon: <Settings />,
     title: "Event Settings",
+    isPublic: false,
   },
   {
     link: "/events",
     icon: <Celebration />,
     title: "My Events",
+    isPublic: true,
   },
 ];
 
@@ -66,6 +75,22 @@ const SideBar = () => {
     defaultMatches: true,
   });
   const [isOpen, setIsOpen] = useState(false);
+  const { user } = useUserStore();
+  const navigate = useNavigate();
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const isMenuOpen = Boolean(anchorEl);
+  const { clearUser } = useUserStore();
+
+  const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleLogout = () => {
+    useApi.auth().logout();
+    clearUser();
+    setAnchorEl(null);
+    navigate("/");
+  };
 
   const items = (
     <RowBar>
@@ -73,15 +98,24 @@ const SideBar = () => {
         <Typography variant="h5">Digital Envelope</Typography>
       </Box>
       <Box sx={{ p: 2 }}>
-        <AccountSection>
+        <AccountSection onClick={handleMenuClick}>
           <Avatar
-            alt="Omer Gal"
-            src="https://lh3.googleusercontent.com/a-/AFdZucpOjKoBp_dBEwTNwWq0fVcjTxmgFnkmVbheH4DECQ=s96-c"
+            alt={user.firstName + " " + user.lastName}
+            src={user.photoUrl}
             sx={{ width: 32, height: 32, mr: 2 }}
           />
-          <Typography variant="subtitle1">Omer Gal</Typography>
+          <Typography variant="subtitle1">
+            {user.firstName + " " + user.lastName}
+          </Typography>
         </AccountSection>
       </Box>
+      <Menu
+        open={isMenuOpen}
+        anchorEl={anchorEl}
+        onClose={() => setAnchorEl(null)}
+      >
+        <MenuItem onClick={handleLogout}>Log out</MenuItem>
+      </Menu>
       <NavDivider />
       <Box sx={{ flexGrow: 1 }}>
         {links.map((item) => (
@@ -96,7 +130,7 @@ const SideBar = () => {
       {!lgOrXL && !isOpen && (
         <Box sx={{ display: "block", position: "fixed" }}>
           <Card>
-            <Menu onClick={() => setIsOpen(!isOpen)} sx={{ p: 1 }} />
+            <MenuIcon onClick={() => setIsOpen(!isOpen)} sx={{ p: 1 }} />
           </Card>
         </Box>
       )}

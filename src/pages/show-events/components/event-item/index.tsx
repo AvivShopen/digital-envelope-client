@@ -1,11 +1,11 @@
-import { LockClock } from "@mui/icons-material";
-import { Avatar, CardContent, Divider, Grid, Typography } from "@mui/material";
+import { Check, Close, Lock, LockClock, LockOpen } from "@mui/icons-material";
+import { CardContent, Chip, Divider, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useEventStore } from "../../../../states/event-store";
 import { Event } from "../../../../types/event";
-import { CardContainer, CenteredGrid, FlexBox } from "./styles";
+import { CardContainer, CenteredGrid } from "./styles";
 
 interface Props {
   event: Event;
@@ -13,6 +13,7 @@ interface Props {
 
 const EventItem: React.FC<Props> = ({ event }) => {
   const setEvent = useEventStore((state) => state.setEvent);
+  const createdAt = new Date(event.createdAt).toLocaleDateString();
   return (
     <CardContainer>
       <Link
@@ -43,26 +44,31 @@ const EventItem: React.FC<Props> = ({ event }) => {
               sx={{ justifyContent: "space-between" }}
             >
               <CenteredGrid item>
-                <LockClock color="action" />
                 <Typography
                   color="textSecondary"
                   display="inline"
                   sx={{ pl: 1 }}
                   variant="body2"
                 >
-                  Created at : 16/02/2023
+                  {"Created at: " + createdAt}
                 </Typography>
               </CenteredGrid>
               <CenteredGrid item>
-                <LockClock color="action" />
-                <Typography
-                  color="textSecondary"
-                  display="inline"
-                  sx={{ pl: 1 }}
-                  variant="body2"
-                >
-                  Closed
-                </Typography>
+                {event.closed ? (
+                  <Chip
+                    label={"Closed"}
+                    color={"error"}
+                    sx={{ fontWeight: "600" }}
+                    icon={<Close />}
+                  />
+                ) : (
+                  <Chip
+                    label={"Open"}
+                    color={"success"}
+                    sx={{ fontWeight: "600" }}
+                    icon={<Check />}
+                  />
+                )}
               </CenteredGrid>
             </Grid>
           </Box>

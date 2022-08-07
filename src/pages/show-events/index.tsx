@@ -1,16 +1,15 @@
-import { Grid, Stack, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import { Container } from "@mui/system";
 import React, { useEffect, useState } from "react";
+import CenteringContainer from "../../components/CenteringContainer";
 import SideBar from "../../components/sidebar";
 import useApi from "../../hooks/useApi";
-import { useUserStore } from "../../states/auth-store";
-import { Event, EventTypes } from "../../types/event";
+import { Event } from "../../types/event";
 import EventItem from "./components/event-item";
 import { StyledGrid } from "./styles";
 
 const ShowEvents: React.FC<any> = () => {
   const [events, setEvents] = useState<Event[]>([]);
-  const { user, setUser } = useUserStore();
 
   useEffect(() => {
     fetchEvents();
@@ -24,22 +23,19 @@ const ShowEvents: React.FC<any> = () => {
   return (
     <>
       <SideBar />
-      <Stack sx={{ flexGrow: 1 }}>
-        <Typography variant="h4" gutterBottom>
-          My events
-        </Typography>
-        <Container maxWidth={false}>
+      <CenteringContainer component="main">
+        <Container maxWidth={"md"}>
           <Grid container spacing={3}>
             {events.map((event: Event, index: number) => {
               return (
-                <StyledGrid>
-                  <EventItem key={"" + event.id} event={event} />
+                <StyledGrid key={index}>
+                  <EventItem event={event} />
                 </StyledGrid>
               );
             })}
           </Grid>
         </Container>
-      </Stack>
+      </CenteringContainer>
     </>
   );
 };

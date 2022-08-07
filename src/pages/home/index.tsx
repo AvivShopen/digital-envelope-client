@@ -1,7 +1,6 @@
 import { Box } from "@mui/material";
 import Swal from "sweetalert2";
 import useApi, { serverUrl } from "../../hooks/useApi";
-import { useUserStore } from "../../states/auth-store";
 import GoogleSignInSection from "./components/google-section";
 import {
   Header,
@@ -12,7 +11,6 @@ import {
 } from "./styles";
 
 const HomePage = () => {
-  const { setUser } = useUserStore();
   const handleLogin = () => {
     Swal.fire({
       title: "Sign in",
@@ -24,10 +22,7 @@ const HomePage = () => {
       showCancelButton: true,
     }).then(async (res) => {
       if (res.isConfirmed) {
-        location.href = `${serverUrl}/auth/google`;
-        const { data } = await useApi.auth().getUser();
-        setUser(data);
-        alert(data);
+        useApi.auth().login();
       }
     });
   };

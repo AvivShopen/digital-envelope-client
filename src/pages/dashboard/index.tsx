@@ -26,16 +26,6 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetchData();
-    // const mockData: IDashboard = {
-    //   averagePerGuest: 120,
-    //   paidGuests: {
-    //     current: 50,
-    //     max: 100,
-    //   },
-    //   totalAmount: 1500,
-    // };
-
-    // setData((prev) => mockData);
   }, []);
 
   return (
@@ -118,8 +108,6 @@ const Dashboard = () => {
           </DashboardLayoutRoot>
         </>
       ) : (
-        // {/* <ShowBlessings /> */}
-
         <h2>"Loading..."</h2>
       )}
     </>

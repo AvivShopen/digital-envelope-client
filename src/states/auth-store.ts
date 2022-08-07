@@ -1,22 +1,15 @@
 import create from "zustand";
-import { User } from "../types/user";
 
-
-interface UserStore {
-    user: User;
-    setUser: (user: User) => void;
-    clearUser: () => void;
+interface AuthState {
+  token: string;
+  setToken: (token: string) => void;
+  // clearToken: () => void;
 }
-const initState: User = {
-    email: "",
-    firstName: "",
-    id: "",
-    lastName: "",
-};
-const useStore = create<UserStore>((set) => ({
-    user: initState,
-    setUser: (user: User) => set((state) => ({ user })),
-    clearUser: () => set((state) => ({ user: initState }))
+
+const useStore = create<AuthState>((set) => ({
+  token: "",
+  //Set the global event
+  setToken: (token) => set((state) => ({ token })),
 }));
 
-export { useStore as useUserStore };
+export { useStore as useAuthStore };
